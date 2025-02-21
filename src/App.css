@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@import "tailwindcss";
+@config "../../tailwind.config.js";
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
