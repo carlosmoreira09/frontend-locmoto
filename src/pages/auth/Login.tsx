@@ -4,11 +4,8 @@ import logoClintia  from '../../assets/imagem-logo-grande.png'
 import {Alert, AlertDescription, AlertTitle} from "../../components/ui/alert.tsx";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "../../components/ui/select.tsx"
 import {Input} from "../../components/ui/input.tsx";
-import {storeOptions} from "../../utils/fixedOptions.ts";
+import {storeOptions} from "@/utils/fixedOptions.ts";
 import { Button } from '../../components/ui/button.tsx';
-
-
-
 
 const Login:React.FC = () => {
 
@@ -31,7 +28,7 @@ const Login:React.FC = () => {
         <div>
 
             <main className="min-h-screen flex">
-                <div className="hidden sm:flex-1 bg-amber-800 sm:flex flex-col items-center justify-center p-8">
+                <div className="hidden sm:flex-1 from-amber-700 bg-gradient-to-bl via-yellow-600 to-amber-700 sm:flex flex-col items-center justify-center p-8">
                     <div className="max-w-[600px] w-full space-y-1">
                         <img
                             src={logoClintia}
