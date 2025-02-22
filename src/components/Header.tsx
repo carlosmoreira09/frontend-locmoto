@@ -53,7 +53,6 @@ export default function Header() {
                                     key={item.title}
                                     className="relative"
                                     onMouseEnter={() => setActiveMenu(item.title)}
-                                    onMouseLeave={() => setActiveMenu(item.title)}
                                 >
                                     <Link
                                         to="#"
@@ -63,13 +62,14 @@ export default function Header() {
                                         <ChevronDown className="ml-1 h-4 w-4"/>
                                     </Link>
                                     {activeMenu === item.title && (
-                                        <div
+                                        <div onMouseLeave={() => setActiveMenu(null)}
                                             className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg z-10">
-                                            <ul className="py-2">
+                                            <ul className="py-2" >
                                                 {item.submenu.map((subItem) => (
                                                     <li key={subItem}>
+
                                                         <Link to="#"
-                                                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-yellow-100">
+                                                              className="block px-4 capitalize py-2 text-sm text-gray-700 hover:bg-yellow-100">
                                                             {subItem}
                                                         </Link>
                                                     </li>
