@@ -3,6 +3,7 @@ import Login from "../pages/auth/Login.tsx";
 import AppLayout from "../pages/AppLayout.tsx";
 import Dashboard from "../pages/home/Dashboard.tsx";
 import AddClientPage from "@/pages/clients/AddClientPage.tsx";
+import {VehicleRegistration} from "@/pages/vehicles/VehicleRegistration.tsx";
 
 
 export const router = createBrowserRouter([
@@ -28,10 +29,19 @@ export const router = createBrowserRouter([
         element: <AppLayout />,
         children: [
             {
-                index: true,
+                path: 'add-client',
                 element: <AddClientPage />
             }]
     },
+    {
+        path: 'vehicles',
+        element: <AppLayout />,
+        children: [
+            {
+                path: 'add-vehicle',
+                element: <VehicleRegistration />
+            }]
+    }
 ], {
     future: {
     v7_relativeSplatPath: true,

@@ -9,11 +9,27 @@ const menuItems = [
         submenu: [
             {
                 menuItem: "Cadastrar Cliente",
-                endpoint: '/add-clients'
+                endpoint: '/clients/add-client'
             },
             {
                 menuItem: "Lista de Clientes",
                 endpoint: '/clients'
+            }],
+    },    {
+        title: "Motos",
+        submenu: [
+
+            {
+                menuItem: "Adicionar Moto",
+                endpoint: '/vehicles/add-vehicle'
+            },
+            {
+                menuItem: "Lista de Motos",
+                endpoint: 'end-contract'
+            },
+            {
+                menuItem: "Tabela de Preços",
+                endpoint: 'booking'
             }],
     },
     {
@@ -101,7 +117,7 @@ export default function Header() {
     const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
 
     return (
-        <header className=" h-48 from-yellow-400 bg-gradient-to-bl via-yellow-500 to-yellow-400 shadow-md">
+        <header className="h-48 from-yellow-400 bg-gradient-to-bl via-yellow-500 to-yellow-400 shadow-md">
                 <div className="flex items-center">
                 <img src={logoClintia} alt="Logo" width={200} height={140}
                      className="mt-5 ml-5 rounded-full"/>
