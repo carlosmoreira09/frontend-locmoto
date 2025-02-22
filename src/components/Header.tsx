@@ -1,32 +1,96 @@
 import { useState } from "react"
-import { ChevronDown, Menu, X } from "lucide-react"
+import {ChevronDown, Menu, X} from "lucide-react"
 import {Link} from "react-router-dom";
 import logoClintia  from '../assets/imagem-logo-grande.png'
 
 const menuItems = [
     {
-        title: "Cadastros",
-        submenu: ["Clientes", "Motos", "Funcionários"],
+        title: "Clientes",
+        submenu: [
+            {
+                menuItem: "Cadastrar Cliente",
+                endpoint: '/add-clients'
+            },
+            {
+                menuItem: "Lista de Clientes",
+                endpoint: '/clients'
+            }],
     },
     {
         title: "Locação",
-        submenu: ["Nova Locação", "Devoluções", "Reservas"],
+        submenu: [
+
+            {
+                menuItem: "Nova Locação",
+                endpoint: 'new-contract'
+            },
+            {
+                menuItem: "Devoluções",
+                endpoint: 'end-contract'
+            },
+            {
+                menuItem: "Reservas",
+                endpoint: 'booking'
+            }],
     },
     {
         title: "Multas",
-        submenu: ["Cadastrar", "Listar"],
+        submenu: [     {
+            menuItem: "Cadastrar",
+            endpoint: 'booking'
+        },
+            {
+                menuItem: "Listar",
+                endpoint: 'booking'
+            }],
     },
     {
         title: "Tabela de Preços",
-        submenu: ["Diárias", "Pacotes", "Promoções"],
+        submenu: [
+            {
+            menuItem: "Cadastrar",
+            endpoint: 'new-tablePrice'
+            },
+            {
+                menuItem: "Gerenciar",
+                endpoint: 'tableprice'
+            },
+            {
+                menuItem: "Promoções",
+                endpoint: 'sales'
+            }],
     },
     {
         title: "Relatórios",
-        submenu: ["Locações", "Financeiro", "Estoque"],
+        submenu: [
+            {
+                menuItem: "Locações",
+                endpoint: 'report-contracts'
+            },
+            {
+                menuItem: "Financeiro",
+                endpoint: 'report-financial'
+            },
+            {
+                menuItem: "Estoque",
+                endpoint: 'report-vehicles'
+            }],
     },
     {
         title: "Configurações do Contrato",
-        submenu: ["Termos Padrão", "Cláusulas", "Personalização"],
+        submenu: [
+            {
+                menuItem: "Termos Padrão",
+                endpoint: 'report-contracts'
+            },
+            {
+                menuItem: "Cláusulas",
+                endpoint: 'report-financial'
+            },
+            {
+                menuItem: "Personalização",
+                endpoint: 'report-vehicles'
+            }],
     }
 ]
 
@@ -38,7 +102,7 @@ export default function Header() {
 
     return (
         <header className=" h-48 from-yellow-400 bg-gradient-to-bl via-yellow-500 to-yellow-400 shadow-md">
-            <div className="flex items-center">
+                <div className="flex items-center">
                 <img src={logoClintia} alt="Logo" width={200} height={140}
                      className="mt-5 ml-5 rounded-full"/>
             </div>
@@ -66,11 +130,11 @@ export default function Header() {
                                             className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg z-10">
                                             <ul className="py-2" >
                                                 {item.submenu.map((subItem) => (
-                                                    <li key={subItem}>
+                                                    <li key={subItem.menuItem}>
 
-                                                        <Link to="#"
+                                                        <Link to={subItem.endpoint}
                                                               className="block px-4 capitalize py-2 text-sm text-gray-700 hover:bg-yellow-100">
-                                                            {subItem}
+                                                            {subItem.menuItem}
                                                         </Link>
                                                     </li>
                                                 ))}
@@ -103,10 +167,10 @@ export default function Header() {
                                 {activeMenu === item.title && (
                                     <ul className="pl-4 mt-2 space-y-2">
                                         {item.submenu.map((subItem) => (
-                                            <li key={subItem}>
-                                                <Link to="#"
+                                            <li key={subItem.menuItem}>
+                                                <Link to={subItem.endpoint}
                                                       className="block text-sm text-gray-700 hover:text-yellow-600">
-                                                    {subItem}
+                                                    {subItem.menuItem}
                                                 </Link>
                                             </li>
                                         ))}
