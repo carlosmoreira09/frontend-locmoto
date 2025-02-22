@@ -19,3 +19,12 @@ export interface ICreateClient {
     address: string;
     zip_code?: string;
 }
+
+export interface IAddressForm {
+    name: string
+    street: string
+    city: string
+    neighborhood: string
+    state: string
+    phone: string
+}

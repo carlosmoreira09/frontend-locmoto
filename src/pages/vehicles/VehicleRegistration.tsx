@@ -1,9 +1,9 @@
 import React from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {PlusCircle} from "lucide-react";
-import {DriverForm} from "@/pages/clients/components/add-driver.tsx";
 import VehicleForm from "@/pages/vehicles/components/vehicle-form.tsx";
 import {InsuranceForm} from "@/pages/insurance/add-insurance.tsx";
+import {VehicleFinancialForm} from "@/pages/vehicle-financial/add-vehicle-financial.tsx";
 
 export const VehicleRegistration: React.FC = () => {
     return (
@@ -15,7 +15,7 @@ export const VehicleRegistration: React.FC = () => {
                 <TabsList>
                     <TabsTrigger className="text-base" value="add-client">Dados da Moto</TabsTrigger>
                     <TabsTrigger className="text-base" value="contacts">Seguro</TabsTrigger>
-                    <TabsTrigger className="text-base" value="drivers">Dados de Compra</TabsTrigger>
+                    <TabsTrigger className="text-base" value="vehicle-financial">Dados de Compra</TabsTrigger>
 
                 </TabsList>
                 <TabsContent value="add-client">
@@ -24,8 +24,8 @@ export const VehicleRegistration: React.FC = () => {
                 <TabsContent value="contacts">
                     <InsuranceForm/>
                 </TabsContent>
-                <TabsContent value="drivers">
-                    <DriverForm/>
+                <TabsContent value="vehicle-financial">
+                    <VehicleFinancialForm/>
                 </TabsContent>
             </Tabs>
 

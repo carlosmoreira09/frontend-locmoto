@@ -1,37 +1,74 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+"use client"
+
+import type React from "react"
+import { useForm } from "react-hook-form"
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import {IAddressForm} from "@/types/dto/clients.dto.ts";
 
-export default function ContactInfo() {
+export const AddressForm: React.FC = () => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<IAddressForm>()
+
+    const onSubmit = (data: IAddressForm) => {
+        console.log(data)
+        // Implementar lógica de envio aqui
+    }
+
     return (
-        <Card>
+        <Card className="w-full mx-auto">
             <CardHeader>
-                <CardTitle>Informações de Contato</CardTitle>
+                <CardTitle>Informações de Contato e Endereço</CardTitle>
             </CardHeader>
-            <CardContent>
-                <div className="grid gap-4">
-                    <div className="grid grid-cols-2 gap-4">
-                        <div>
-                            <Label htmlFor="name">Nome</Label>
-                            <Input id="name" placeholder="Nome completo" />
-                        </div>
-                        <div>
-                            <Label htmlFor="email">Email</Label>
-                            <Input id="email" type="email" placeholder="email@exemplo.com" />
-                        </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <CardContent className="grid grid-cols-1 md:grid-cols-5 gap-4">
+                    <div className="space-y-2 col-span-full">
+                        <Label htmlFor="name">Nome Completo</Label>
+                        <Input id="name" {...register("name", { required: "Campo obrigatório" })} />
+                        {errors.name && <span className="text-red-500 text-sm">{errors.name.message}</span>}
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
-                        <div>
-                            <Label htmlFor="phone">Telefone</Label>
-                            <Input id="phone" placeholder="(00) 00000-0000" />
-                        </div>
-                        <div>
-                            <Label htmlFor="address">Endereço</Label>
-                            <Input id="address" placeholder="Rua, número, bairro" />
-                        </div>
+
+                    <div className="space-y-2 col-span-full">
+                        <Label htmlFor="street">Logradouro</Label>
+                        <Input id="street" {...register("street", { required: "Campo obrigatório" })} />
+                        {errors.street && <span className="text-red-500 text-sm">{errors.street.message}</span>}
                     </div>
-                </div>
-            </CardContent>
+
+                    <div className="space-y-2">
+                        <Label htmlFor="city">Município</Label>
+                        <Input id="city" {...register("city", { required: "Campo obrigatório" })} />
+                        {errors.city && <span className="text-red-500 text-sm">{errors.city.message}</span>}
+                    </div>
+
+                    <div className="space-y-2">
+                        <Label htmlFor="neighborhood">Bairro</Label>
+                        <Input id="neighborhood" {...register("neighborhood", { required: "Campo obrigatório" })} />
+                        {errors.neighborhood && <span className="text-red-500 text-sm">{errors.neighborhood.message}</span>}
+                    </div>
+
+                    <div className="space-y-2">
+                        <Label htmlFor="state">Estado</Label>
+                        <Input id="state" {...register("state", { required: "Campo obrigatório" })} />
+                        {errors.state && <span className="text-red-500 text-sm">{errors.state.message}</span>}
+                    </div>
+
+                    <div className="space-y-2">
+                        <Label htmlFor="phone">Telefone</Label>
+                        <Input id="phone" {...register("phone", { required: "Campo obrigatório" })} />
+                        {errors.phone && <span className="text-red-500 text-sm">{errors.phone.message}</span>}
+                    </div>
+                </CardContent>
+                <CardFooter>
+                    <Button type="submit" className="w-full">
+                        Salvar
+                    </Button>
+                </CardFooter>
+            </form>
         </Card>
     )
 }
