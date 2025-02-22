@@ -27,7 +27,7 @@ export const ClientForm: React.FC = () => {
                         <Label htmlFor="personType">Tipo de Pessoa</Label>
                         <Input
                             id="personType"
-                            {...register('personType', { required: 'Campo obrigatório' })}
+                            {...register('personType', {required: 'Campo obrigatório'})}
                         />
                         {errors.personType && <span className="text-red-500 text-sm">{errors.personType.message}</span>}
                     </div>
@@ -36,7 +36,7 @@ export const ClientForm: React.FC = () => {
                         <Label htmlFor="fullName">Nome Completo</Label>
                         <Input
                             id="fullName"
-                            {...register('fullName', { required: 'Campo obrigatório' })}
+                            {...register('fullName', {required: 'Campo obrigatório'})}
                         />
                         {errors.fullName && <span className="text-red-500 text-sm">{errors.fullName.message}</span>}
                     </div>
@@ -87,7 +87,7 @@ export const ClientForm: React.FC = () => {
                         <Label htmlFor="phone">Telefone</Label>
                         <Input
                             id="phone"
-                            {...register('phone', { required: 'Campo obrigatório' })}
+                            {...register('phone', {required: 'Campo obrigatório'})}
                         />
                         {errors.phone && <span className="text-red-500 text-sm">{errors.phone.message}</span>}
                     </div>
@@ -97,7 +97,7 @@ export const ClientForm: React.FC = () => {
                         <Input
                             id="email"
                             type="email"
-                            {...register('email', { required: 'Campo obrigatório' })}
+                            {...register('email', {required: 'Campo obrigatório'})}
                         />
                         {errors.email && <span className="text-red-500 text-sm">{errors.email.message}</span>}
                     </div>
@@ -143,35 +143,11 @@ export const ClientForm: React.FC = () => {
                         />
                     </div>
 
-                    <div className="flex items-center space-x-2">
-                        <Checkbox
-                            id="isBlock"
-                            {...register('isBlock')}
-                        />
-                        <Label htmlFor="isBlock">Bloqueado</Label>
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label htmlFor="blockReason">Motivo do Bloqueio</Label>
-                        <Input
-                            id="blockReason"
-                            {...register('blockReason')}
-                        />
-                    </div>
-
-                    <div className="space-y-2 col-span-full">
-                        <Label htmlFor="observations">Observações</Label>
-                        <Textarea
-                            id="observations"
-                            {...register('observations')}
-                        />
-                    </div>
-
                     <div className="space-y-2">
                         <Label htmlFor="address">Endereço</Label>
                         <Input
                             id="address"
-                            {...register('address', { required: 'Campo obrigatório' })}
+                            {...register('address', {required: 'Campo obrigatório'})}
                         />
                         {errors.address && <span className="text-red-500 text-sm">{errors.address.message}</span>}
                     </div>
@@ -181,6 +157,28 @@ export const ClientForm: React.FC = () => {
                         <Input
                             id="zip_code"
                             {...register('zip_code')}
+                        />
+                    </div>
+                    <div className="space-y-2 col-span-full">
+                        <Label htmlFor="observations">Observações</Label>
+                        <Textarea
+                            id="observations"
+                            {...register('observations')}
+                        />
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <Checkbox
+                            id="isBlock"
+                            {...register('isBlock')}
+                        />
+                        <Label htmlFor="isBlock">Bloqueado</Label>
+                    </div>
+
+                    <div className="col-span-3 space-y-2">
+                        <Label htmlFor="blockReason">Motivo do Bloqueio</Label>
+                        <Input
+                            id="blockReason"
+                            {...register('blockReason')}
                         />
                     </div>
                 </CardContent>

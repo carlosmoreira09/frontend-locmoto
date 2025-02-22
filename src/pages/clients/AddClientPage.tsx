@@ -2,8 +2,8 @@ import React from "react";
 import {PlusCircle} from "lucide-react";
 import ClientForm from "@/pages/clients/components/client-form.tsx";
 import Fines from "@/pages/clients/components/fines-info.tsx";
-import OpenContracts from "@/pages/clients/components/contracts.tsx";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs.tsx";
+import {DriverForm} from "@/pages/clients/components/add-driver.tsx";
 
 const AddClientPage:React.FC = () => {
 
@@ -25,7 +25,7 @@ const AddClientPage:React.FC = () => {
                     <Fines/>
                 </TabsContent>
                 <TabsContent value="drivers">
-                    <OpenContracts/>
+                    <DriverForm/>
                 </TabsContent>
             </Tabs>
 
