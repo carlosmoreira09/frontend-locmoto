@@ -1,4 +1,6 @@
 export enum ProfileRole {
     admin = 'admin',
-    supplier = 'supplier',
+    master = 'master',
+    atendente = 'atendente'
+
 }

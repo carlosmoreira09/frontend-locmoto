@@ -1,6 +1,7 @@
 const accessLevels = {
-    supplier: 0,
-    admin: 1
+    atendente: 0,
+    admin: 1,
+    master: 2,
 };
 
 export type AccessLevel = keyof typeof accessLevels;
