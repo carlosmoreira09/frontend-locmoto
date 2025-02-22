@@ -4,6 +4,7 @@ import AppLayout from "../pages/AppLayout.tsx";
 import Dashboard from "../pages/home/Dashboard.tsx";
 import AddClientPage from "@/pages/clients/AddClientPage.tsx";
 import {VehicleRegistration} from "@/pages/vehicles/VehicleRegistration.tsx";
+import {TrafficFineForm} from "@/pages/traffic-fines/add-traffic-fine.tsx";
 
 
 export const router = createBrowserRouter([
@@ -40,6 +41,15 @@ export const router = createBrowserRouter([
             {
                 path: 'add-vehicle',
                 element: <VehicleRegistration />
+            }]
+    },
+    {
+        path: 'traffic-fines',
+        element: <AppLayout />,
+        children: [
+            {
+                path: 'add-fine',
+                element: <TrafficFineForm />
             }]
     }
 ], {

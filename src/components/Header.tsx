@@ -53,7 +53,7 @@ const menuItems = [
         title: "Multas",
         submenu: [     {
             menuItem: "Cadastrar",
-            endpoint: 'booking'
+            endpoint: '/traffic-fines/add-fine'
         },
             {
                 menuItem: "Listar",
