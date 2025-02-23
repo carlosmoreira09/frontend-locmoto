@@ -1,7 +1,10 @@
-import { useState } from "react"
-import {ChevronDown, Menu, X} from "lucide-react"
+import React, { useState } from "react"
+import {ChevronDown, Menu, Search, X} from "lucide-react"
 import {Link} from "react-router-dom";
 import logoClintia  from '../assets/imagem-logo-grande.png'
+import {CardContent, CardHeader, CardTitle} from "@/components/ui/card.tsx";
+import {Input} from "@/components/ui/input.tsx";
+import {Button} from "@/components/ui/button.tsx";
 
 const menuItems = [
     {
@@ -65,23 +68,19 @@ const menuItems = [
         submenu: [
             {
             menuItem: "Cadastrar",
-            endpoint: 'new-tablePrice'
+            endpoint: '/table-price/add-price'
             },
             {
                 menuItem: "Gerenciar",
                 endpoint: 'tableprice'
-            },
-            {
-                menuItem: "Promoções",
-                endpoint: 'sales'
             }],
     },
     {
         title: "Relatórios",
         submenu: [
             {
-                menuItem: "Locações",
-                endpoint: 'report-contracts'
+                menuItem: "Recibos",
+                endpoint: '/receipts/new-receipt'
             },
             {
                 menuItem: "Financeiro",
@@ -113,42 +112,78 @@ const menuItems = [
 export default function Header() {
     const [activeMenu, setActiveMenu] = useState<string | null>(null)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+    const [searchTerm, setSearchTerm] = useState("")
 
+
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault()
+        // Implement search logic here
+        console.log("Searching for:", searchTerm)
+    }
     const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
 
     return (
-        <header className="h-48 from-yellow-400 bg-gradient-to-bl via-yellow-500 to-yellow-400 shadow-md">
-                <div className="flex items-center">
-                <img src={logoClintia} alt="Logo" width={200} height={140}
-                     className="mt-5 ml-5 rounded-full"/>
+        <header className="h-56 from-yellow-400 bg-gradient-to-bl via-yellow-500 to-yellow-400 shadow-md">
+            <div className="flex items-center">
+                <div className="fixed top-0 left-0 mt-8">
+                    <img
+                        src={logoClintia}
+                        alt="Logo"
+                        width={200}
+                        height={140}
+                        className="mt-5 ml-5 rounded-full"
+                    />
+                </div>
+                <div className="flex-1 flex justify-center mt-5">
+                    <div className="w-1/2">
+                        <CardHeader>
+                            <CardTitle>Procure por Clientes</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <form onSubmit={handleSearch} className="flex gap-4">
+                                <Input
+                                    type="text"
+                                    placeholder="Procure pelo nome, cpf ou cnpj"
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    className="h-12 flex-grow"
+                                />
+                                <Button className="cursor-pointer bg-amber-700 rounded-full hover:bg-amber-800"
+                                        type="submit" size="lg">
+                                    <Search className="mr-2 h-4 w-4"/> Search
+                                </Button>
+                            </form>
+                        </CardContent>
+                    </div>
             </div>
-            <div className="flex justify-center mx-auto px-4">
+        </div>
+    <div className="flex justify-center mx-auto px-4">
 
-                <div className="flex absolute top-35  h-16">
+        <div className="flex absolute top-45 h-16">
 
-                    <nav className="hidden lg:block">
-                        <ul className="flex space-x-2">
-                            {menuItems.map((item) => (
-                                <li
-                                    key={item.title}
-                                    className="relative"
-                                    onMouseEnter={() => setActiveMenu(item.title)}
-                                >
-                                    <Link
-                                        to="#"
-                                        className="text-amber-950 font-semibold text-base uppercase rounded-full hover:text-amber-300 px-4 py-2 transition duration-300 flex items-center"
-                                    >
-                                        {item.title}
-                                        <ChevronDown className="ml-1 h-4 w-4"/>
-                                    </Link>
-                                    {activeMenu === item.title && (
-                                        <div onMouseLeave={() => setActiveMenu(null)}
-                                            className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg z-10">
-                                            <ul className="py-2" >
-                                                {item.submenu.map((subItem) => (
-                                                    <li key={subItem.menuItem}>
+            <nav className="hidden lg:block">
+                <ul className="flex space-x-2">
+                    {menuItems.map((item) => (
+                        <li
+                            key={item.title}
+                            className="relative"
+                            onMouseEnter={() => setActiveMenu(item.title)}
+                        >
+                            <Link
+                                to="#"
+                                className="text-amber-950 font-semibold text-base uppercase rounded-full hover:text-amber-300 px-4 py-2 transition duration-300 flex items-center"
+                            >
+                                {item.title}
+                                <ChevronDown className="ml-1 h-4 w-4"/>
+                            </Link>
+                            {activeMenu === item.title && (
+                                <div onMouseLeave={() => setActiveMenu(null)}
+                                     className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg z-10">
+                                    <ul className="py-2">
+                                        {item.submenu.map((subItem) => (
+                                            <li key={subItem.menuItem}>
 
-                                                        <Link to={subItem.endpoint}
+                                                <Link to={subItem.endpoint}
                                                               className="block px-4 capitalize py-2 text-sm text-gray-700 hover:bg-yellow-100">
                                                             {subItem.menuItem}
                                                         </Link>

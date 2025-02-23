@@ -4,13 +4,16 @@ import AppLayout from "../pages/AppLayout.tsx";
 import Dashboard from "../pages/home/Dashboard.tsx";
 import AddClientPage from "@/pages/clients/AddClientPage.tsx";
 import {VehicleRegistration} from "@/pages/vehicles/VehicleRegistration.tsx";
-import {TrafficFineForm} from "@/pages/traffic-fines/add-traffic-fine.tsx";
+import TrafficFinePage from "@/pages/traffic-fines/TrafficFinePage.tsx";
+import TablePricePage from "@/pages/table-price/TablePricePage.tsx";
+import ReceiptsPage from "@/pages/receipts/ReceiptsPage.tsx";
+import ClientsPage from "@/pages/clients/ClientsPage.tsx";
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <Navigate to="/login" />
+        element: <Navigate to="/home" />
     },
     {
         path:'/login',
@@ -29,6 +32,10 @@ export const router = createBrowserRouter([
         path: 'clients',
         element: <AppLayout />,
         children: [
+            {
+                index: true,
+                element: <ClientsPage />
+            },
             {
                 path: 'add-client',
                 element: <AddClientPage />
@@ -49,7 +56,25 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: 'add-fine',
-                element: <TrafficFineForm />
+                element: <TrafficFinePage />
+            }]
+    },
+    {
+        path: 'table-price',
+        element: <AppLayout />,
+        children: [
+            {
+                path: 'add-price',
+                element: <TablePricePage />
+            }]
+    },
+    {
+        path: 'receipts',
+        element: <AppLayout />,
+        children: [
+            {
+                path: 'new-receipt',
+                element: <ReceiptsPage />
             }]
     }
 ], {
