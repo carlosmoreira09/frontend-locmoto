@@ -1,6 +1,6 @@
 "use client"
 
-import type React from "react"
+import React, {useEffect} from "react"
 
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -9,46 +9,49 @@ import { Button } from "@/components/ui/button"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Search, UserPlus } from "lucide-react"
 import {useNavigate} from "react-router";
+import {findaAllClients} from "@/service/clients/clientService.ts";
+import {ICreateClient} from "@/types/dto/clients.dto.ts";
 
-// Simulated data - replace with your actual data fetching logic
-const mockData = [
-    { id: 1, name: "John Doe", type: "Client", email: "john@example.com", phone: "(123) 456-7890" },
-    { id: 2, name: "Jane Smith", type: "Driver", email: "jane@example.com", phone: "(098) 765-4321" },
-    // Add more mock data as needed
-]
 
-export default function ClientsPage() {
+export const ClientsPage: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState("")
+    const [clients,setClients] = useState<ICreateClient[]>()
     const router = useNavigate()
 
-    const filteredData = mockData.filter(
+    const filteredData = clients?.filter(
         (item) =>
-            item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            item.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.document.toLowerCase().includes(searchTerm.toLowerCase()) ||
             item.phone.includes(searchTerm),
     )
-
+    const fetchClients = async () => {
+        const result = await findaAllClients()
+        setClients(result?.data)
+    }
+    useEffect(() => {
+        fetchClients().then()
+    }, []);
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault()
         // Implement search logic here
         console.log("Searching for:", searchTerm)
     }
 
-    const handleRowClick = (id: number) => {
-        router(`/client-details/${id}`)
+    const handleRowClick = (client: ICreateClient) => {
+        router(`/clients/client-details/`, { state: client})
     }
 
     return (
         <div className="container mx-auto p-4">
             <Card className="mb-6">
                 <CardHeader>
-                    <CardTitle>Clients and Drivers</CardTitle>
+                    <CardTitle>Procurar Clientes</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleSearch} className="flex gap-4">
                         <Input
                             type="text"
-                            placeholder="Search by name, email, or phone"
+                            placeholder="Digite nome, cpf ou cnpj"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             className="flex-grow"
@@ -61,9 +64,9 @@ export default function ClientsPage() {
             </Card>
 
             <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold">Results</h2>
+                <h2 className="text-2xl font-bold">Listagem de clientes</h2>
                 <Button onClick={() => router("/clients/add-client")}>
-                    <UserPlus className="mr-2 h-4 w-4" /> Add New Client
+                    <UserPlus className="mr-2 h-4 w-4" /> Adicionar novo cliente
                 </Button>
             </div>
 
@@ -78,11 +81,11 @@ export default function ClientsPage() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {filteredData.map((item) => (
-                        <TableRow key={item.id} onClick={() => handleRowClick(item.id)} className="cursor-pointer hover:bg-muted">
-                            <TableCell className="font-medium">{item.id}</TableCell>
-                            <TableCell>{item.name}</TableCell>
-                            <TableCell>{item.type}</TableCell>
+                    {filteredData?.map((item) => (
+                        <TableRow key={item.id_client} onClick={() => handleRowClick(item)} className="cursor-pointer hover:bg-muted">
+                            <TableCell className="font-medium">{item.id_client}</TableCell>
+                            <TableCell>{item.personType}</TableCell>
+                            <TableCell>{item.fullName}</TableCell>
                             <TableCell>{item.email}</TableCell>
                             <TableCell>{item.phone}</TableCell>
                         </TableRow>

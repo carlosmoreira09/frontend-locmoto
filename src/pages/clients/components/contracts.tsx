@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import React from "react";
 
-export default function OpenContracts() {
+export const ClientContractInfo:React.FC = () => {
     const contracts = [
         { id: 1, startDate: "2023-07-01", endDate: "2023-07-07", motorcycle: "Honda CB 500", value: 450.0 },
         { id: 2, startDate: "2023-07-15", endDate: "2023-07-20", motorcycle: "Yamaha MT-07", value: 600.0 },

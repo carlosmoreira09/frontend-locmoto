@@ -123,7 +123,7 @@ export default function Header() {
     const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
 
     return (
-        <header className="h-56 from-yellow-400 bg-gradient-to-bl via-yellow-500 to-yellow-400 shadow-md">
+        <header className="h-56 from-yellow-500 bg-gradient-to-bl via-yellow-600 to-yellow-400 shadow-md">
             <div className="flex items-center">
                 <div className="fixed top-0 left-0 mt-8">
                     <img

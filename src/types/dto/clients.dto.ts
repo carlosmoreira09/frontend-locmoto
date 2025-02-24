@@ -1,17 +1,18 @@
 export interface ICreateClient {
+    id_client?: number;
     personType: string;
     fullName: string;
-    document?: string;
-    rg?: string | null;
-    rgEmitDate?: Date;
-    rgExpired?: Date;
-    rgEmitBy?: string;
+    document: string;
+    rg: string | null;
+    rgEmitDate: Date;
+    rgExpired: Date;
+    rgEmitBy: string;
     phone: string;
     email: string;
     nacionality?: string;
     maritalStatus?: string;
     stateRegister?: string;
-    dob?: Date;
+    dob: Date;
     gender?: string;
     isBlock: boolean;
     blockReason?: string;

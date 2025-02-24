@@ -1,5 +1,3 @@
-"use client"
-
 import type React from "react"
 import { useForm } from "react-hook-form"
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
@@ -8,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import {IAddressForm} from "@/types/dto/clients.dto.ts";
 
-export const AddressForm: React.FC = () => {
+export const AddContactInfo: React.FC = () => {
     const {
         register,
         handleSubmit,

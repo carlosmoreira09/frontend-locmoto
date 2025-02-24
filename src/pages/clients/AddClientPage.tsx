@@ -3,7 +3,7 @@ import {PlusCircle} from "lucide-react";
 import ClientForm from "@/pages/clients/components/client-form.tsx";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs.tsx";
 import {DriverForm} from "@/pages/clients/components/add-driver.tsx";
-import {AddressForm} from "@/pages/clients/components/contact-info.tsx";
+import {AddContactInfo} from "@/pages/clients/components/add-contact-info.tsx";
 
 const AddClientPage:React.FC = () => {
 
@@ -22,7 +22,7 @@ const AddClientPage:React.FC = () => {
                     <ClientForm/>
                 </TabsContent>
                 <TabsContent value="contacts">
-                    <AddressForm/>
+                    <AddContactInfo/>
                 </TabsContent>
                 <TabsContent value="drivers">
                     <DriverForm/>
