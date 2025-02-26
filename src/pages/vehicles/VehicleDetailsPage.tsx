@@ -63,7 +63,7 @@ export const VehicleDetails:React.FC = () => {
                     </div>
                 </TabsContent>
                 <TabsContent value="fines">
-                    <TrafficFines fines={vehicle?.trafficFines} client={vehicle?.modelName} />
+                    <TrafficFines fines={vehicle?.trafficFines} />
                 </TabsContent>
                 <TabsContent value="contracts">
                     <ClientContractInfo/>
