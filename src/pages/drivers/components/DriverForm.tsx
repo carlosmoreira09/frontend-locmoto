@@ -32,6 +32,7 @@ export const DriverForm: React.FC = () => {
         const result = await findOneDriver(location.state)
         if(result?.data) {
             setDriver(result?.data[0] || [])
+            setIsEditable(true)
         }
         setIsLoading(false)
 
