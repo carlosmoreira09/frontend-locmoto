@@ -45,7 +45,7 @@ export const VehicleDetails:React.FC = () => {
     return (
         <div>
             <div className="flex items-center mb-4">
-                <PlusCircle className="mr-2 h-5 w-5"/> <h2 className="text-xl font-semibold"> Informações da Moto </h2>
+                <PlusCircle className="mr-2 h-5 w-5"/> <h2 className="text-xl font-semibold"> Informações da Moto: {vehicle?.modelName} </h2>
             </div>
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                 <TabsList>
@@ -63,7 +63,7 @@ export const VehicleDetails:React.FC = () => {
                     </div>
                 </TabsContent>
                 <TabsContent value="fines">
-                    <TrafficFines fines={vehicle?.fines}/>
+                    <TrafficFines fines={vehicle?.trafficFines} client={vehicle?.modelName} />
                 </TabsContent>
                 <TabsContent value="contracts">
                     <ClientContractInfo/>

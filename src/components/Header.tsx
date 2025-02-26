@@ -34,10 +34,6 @@ const menuItems = [
             {
                 menuItem: "Lista de Motos",
                 endpoint: '/vehicles'
-            },
-            {
-                menuItem: "Tabela de Preços",
-                endpoint: 'booking'
             }],
     },
     {

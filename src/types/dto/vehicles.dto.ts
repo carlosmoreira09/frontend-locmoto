@@ -15,5 +15,5 @@ export interface ICreateVehicle {
     odometer: string;
     location: string;
     tenant: number;
-    fines?: ICreateTrafficFine[]
+    trafficFines?: ICreateTrafficFine[]
 }
