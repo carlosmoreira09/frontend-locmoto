@@ -1,5 +1,3 @@
-"use client"
-
 import type React from "react"
 import { useForm } from "react-hook-form"
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card.tsx"

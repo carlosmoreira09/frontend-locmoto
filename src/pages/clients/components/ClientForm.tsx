@@ -36,7 +36,7 @@ export const ClientForm: React.FC<ClientInfoCardProps> = ({clientInfo}) => {
                 <CardTitle className="flex justify-between">
                     {!isEditable ? 'Cadastro do Cliente' : 'Informações do Cliente'}
                     <button  onClick={toggleEditClient} className="bg-amber-800 text-white p-4 rounded-full">
-                        {isEditable ? 'Editar Cliente' : 'Cancelar Editar'}
+                        {isEditable ? 'Editar Cliente' : 'Cancelar'}
                     </button>
                 </CardTitle>
             </CardHeader>

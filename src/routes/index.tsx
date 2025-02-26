@@ -9,6 +9,8 @@ import TablePricePage from "@/pages/table-price/TablePricePage.tsx";
 import ReceiptsPage from "@/pages/receipts/ReceiptsPage.tsx";
 import ClientDetails from "@/pages/clients/ClientDetailsPage.tsx";
 import {ClientsPage} from "@/pages/clients/ClientsPage.tsx";
+import {DriversPage} from "@/pages/drivers/DriversPage.tsx";
+import {DriverForm} from "@/pages/drivers/components/DriverForm.tsx";
 
 
 export const router = createBrowserRouter([
@@ -44,6 +46,23 @@ export const router = createBrowserRouter([
             {
                 path: 'client-details',
                 element: <ClientDetails />
+            },
+        ]
+    }, {
+        path: 'drivers',
+        element: <AppLayout />,
+        children: [
+            {
+                index: true,
+                element: <DriversPage />
+            },
+            {
+                path: 'add-client',
+                element: <AddClientPage />
+            },
+            {
+                path: 'driver-details',
+                element: <DriverForm />
             },
         ]
     },

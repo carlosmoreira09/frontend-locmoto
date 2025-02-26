@@ -1,3 +1,5 @@
+import {ICreateClient} from "@/types/dto/clients.dto.ts";
+
 export interface ICreateDriver {
     id?: number;
     driverName: string;
@@ -13,6 +15,7 @@ export interface ICreateDriver {
     cngExpired: string;
     isActive: boolean;
     driverObs?: string;
+    client: ICreateClient;
 }
 export interface ICreateTrafficFine {
     id?: number;

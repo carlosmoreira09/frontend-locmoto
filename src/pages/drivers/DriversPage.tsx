@@ -1,4 +1,5 @@
 import React, {useEffect} from "react"
+
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -6,43 +7,43 @@ import { Button } from "@/components/ui/button"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Search, UserPlus } from "lucide-react"
 import {useNavigate} from "react-router";
-import {findaAllClients} from "@/service/clients/clientService.ts";
-import {ICreateClient} from "@/types/dto/clients.dto.ts";
+import {ICreateDriver} from "@/types/dto/drivers.dto.ts";
+import {findaAllDrivers} from "@/service/drivers/driverService.ts";
 
 
-export const ClientsPage: React.FC = () => {
+export const DriversPage: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState("")
-    const [clients,setClients] = useState<ICreateClient[]>()
+    const [drivers,setDrivers] = useState<ICreateDriver[]>()
     const router = useNavigate()
 
-    const filteredData = clients?.filter(
+    const filteredData = drivers?.filter(
         (item) =>
-            item.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            item.document.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            item.phone.includes(searchTerm),
+            item.driverName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.cnhNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.fatherName.includes(searchTerm),
     )
-    const fetchClients = async () => {
-        const result = await findaAllClients()
-        setClients(result?.data)
+    const fetchDrivers = async () => {
+        const result = await findaAllDrivers()
+        setDrivers(result?.data)
     }
     useEffect(() => {
-        fetchClients().then()
+        fetchDrivers().then()
     }, []);
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault()
-        // Implement search logic here
-        console.log("Searching for:", searchTerm)
+
+        console.log("Searching:", searchTerm)
     }
 
-    const handleRowClick = (client: ICreateClient) => {
-        router(`/clients/client-details/`, { state: client.id_client})
+    const handleRowClick = (driver: ICreateDriver) => {
+        router(`/drivers/driver-details/`, { state: driver.id})
     }
 
     return (
         <div className="container mx-auto p-4">
             <Card className="mb-6">
                 <CardHeader>
-                    <CardTitle>Procurar Clientes</CardTitle>
+                    <CardTitle>Procurar Motoristas</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleSearch} className="flex gap-4">
@@ -61,7 +62,7 @@ export const ClientsPage: React.FC = () => {
             </Card>
 
             <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold">Listagem de clientes</h2>
+                <h2 className="text-2xl font-bold">Listagem de Motoristas</h2>
                 <Button onClick={() => router("/clients/add-client")}>
                     <UserPlus className="mr-2 h-4 w-4" /> Adicionar novo cliente
                 </Button>
@@ -71,20 +72,20 @@ export const ClientsPage: React.FC = () => {
                 <TableHeader>
                     <TableRow>
                         <TableHead className="w-[100px]">ID</TableHead>
-                        <TableHead>Name</TableHead>
-                        <TableHead>Type</TableHead>
-                        <TableHead>Email</TableHead>
-                        <TableHead>Phone</TableHead>
+                        <TableHead>Motorista</TableHead>
+                        <TableHead>CNH</TableHead>
+                        <TableHead>Validade</TableHead>
+                        <TableHead>Status</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     {filteredData?.map((item) => (
-                        <TableRow key={item.id_client} onClick={() => handleRowClick(item)} className="cursor-pointer hover:bg-muted">
-                            <TableCell className="font-medium">{item.id_client}</TableCell>
-                            <TableCell>{item.personType}</TableCell>
-                            <TableCell>{item.fullName}</TableCell>
-                            <TableCell>{item.email}</TableCell>
-                            <TableCell>{item.phone}</TableCell>
+                        <TableRow key={item.id} onClick={() => handleRowClick(item)} className="cursor-pointer hover:bg-muted">
+                            <TableCell className="font-medium">{item.id}</TableCell>
+                            <TableCell>{item.driverName}</TableCell>
+                            <TableCell>{item.cnhNumber}</TableCell>
+                            <TableCell>{item.cngExpired}</TableCell>
+                            <TableCell>{item.isActive}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

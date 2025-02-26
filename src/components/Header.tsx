@@ -17,7 +17,12 @@ const menuItems = [
             {
                 menuItem: "Lista de Clientes",
                 endpoint: '/clients'
-            }],
+            },
+            {
+                menuItem: "Lista de Motoristas",
+                endpoint: '/drivers'
+            }
+        ],
     },    {
         title: "Motos",
         submenu: [
@@ -148,7 +153,7 @@ export default function Header() {
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                     className="h-12 flex-grow"
                                 />
-                                <Button className="cursor-pointer bg-amber-700 rounded-full hover:bg-amber-800"
+                                <Button className="cursor-pointer text-white bg-amber-700 rounded-full hover:bg-amber-800"
                                         type="submit" size="lg">
                                     <Search className="mr-2 h-4 w-4"/> Search
                                 </Button>

@@ -6,7 +6,7 @@ import {Drivers} from "@/pages/clients/components/drivers.tsx";
 import {ICreateClient} from "@/types/dto/clients.dto.ts";
 import {useLocation} from "react-router-dom";
 import {Spinner} from "@/components/ui/Spinner.tsx";
-import ClientForm from "@/pages/clients/components/client-form.tsx";
+import ClientForm from "@/pages/clients/components/ClientForm.tsx";
 import {AddContactInfo} from "@/pages/clients/components/add-contact-info.tsx";
 import {TrafficFines} from "@/pages/clients/components/traffic-fines.tsx";
 import { findOneClient} from "@/service/clients/clientService.ts";

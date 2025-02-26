@@ -1,8 +1,8 @@
 import React from "react";
 import {PlusCircle} from "lucide-react";
-import ClientForm from "@/pages/clients/components/client-form.tsx";
+import ClientForm from "@/pages/clients/components/ClientForm.tsx";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs.tsx";
-import {DriverForm} from "@/pages/clients/components/add-driver.tsx";
+import {DriverForm} from "@/pages/drivers/components/DriverForm.tsx";
 import {AddContactInfo} from "@/pages/clients/components/add-contact-info.tsx";
 
 const AddClientPage:React.FC = () => {
