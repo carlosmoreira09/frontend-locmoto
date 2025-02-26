@@ -11,6 +11,8 @@ import ClientDetails from "@/pages/clients/ClientDetailsPage.tsx";
 import {ClientsPage} from "@/pages/clients/ClientsPage.tsx";
 import {DriversPage} from "@/pages/drivers/DriversPage.tsx";
 import {DriverForm} from "@/pages/drivers/components/DriverForm.tsx";
+import {VehicleDetails} from "@/pages/vehicles/VehicleDetailsPage.tsx";
+import {VehiclesPage} from "@/pages/vehicles/VehiclesPage.tsx";
 
 
 export const router = createBrowserRouter([
@@ -71,9 +73,18 @@ export const router = createBrowserRouter([
         element: <AppLayout />,
         children: [
             {
+            index: true,
+            element: <VehiclesPage />
+            },
+            {
                 path: 'add-vehicle',
                 element: <VehicleRegistration />
-            }]
+            },
+            {
+                path: 'vehicle-details',
+                element: <VehicleDetails />
+            },
+        ]
     },
     {
         path: 'traffic-fines',

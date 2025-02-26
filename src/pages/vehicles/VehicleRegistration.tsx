@@ -1,7 +1,7 @@
 import React from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {PlusCircle} from "lucide-react";
-import VehicleForm from "@/pages/vehicles/components/vehicle-form.tsx";
+import VehicleForm from "@/pages/vehicles/components/VehicleForm.tsx";
 import {InsuranceForm} from "@/pages/insurance/add-insurance.tsx";
 import {VehicleFinancialForm} from "@/pages/vehicle-financial/add-vehicle-financial.tsx";
 

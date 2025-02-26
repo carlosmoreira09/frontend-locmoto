@@ -1,4 +1,7 @@
+import {ICreateTrafficFine} from "@/types/dto/drivers.dto.ts";
+
 export interface ICreateVehicle {
+    id?: number;
     plateNumber: string;
     color: string;
     renavam: string;
@@ -12,4 +15,5 @@ export interface ICreateVehicle {
     odometer: string;
     location: string;
     tenant: number;
+    fines?: ICreateTrafficFine[]
 }

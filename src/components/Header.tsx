@@ -33,7 +33,7 @@ const menuItems = [
             },
             {
                 menuItem: "Lista de Motos",
-                endpoint: 'end-contract'
+                endpoint: '/vehicles'
             },
             {
                 menuItem: "Tabela de Preços",

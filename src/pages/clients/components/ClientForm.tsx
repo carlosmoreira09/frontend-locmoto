@@ -21,7 +21,7 @@ export const ClientForm: React.FC<ClientInfoCardProps> = ({clientInfo}) => {
             setClient(clientInfo)
             setIsEditable(true)
         }
-    }, [client, clientInfo]);
+    }, [clientInfo]);
     const onSubmit = (data: ICreateClient) => {
         console.log(data);
         // Aqui você pode implementar a lógica para enviar os dados
