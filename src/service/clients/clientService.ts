@@ -17,3 +17,19 @@ export const findaAllClients = async (): Promise<GeneralResponse | undefined> =>
         }
     }
 };
+
+export const findOneClient = async (id_client: number | undefined): Promise<GeneralResponse | undefined> => {
+    try {
+
+        const response = await apiClient.get(`/clients/${id_client}`, {
+            headers: {
+                'x-tenant-id': 1
+            }
+        });
+        return response.data;
+    } catch (error) {
+        if(isAxiosError(error)) {
+            return error.response?.data
+        }
+    }
+};

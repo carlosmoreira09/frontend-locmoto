@@ -22,7 +22,11 @@ const AddClientPage:React.FC = () => {
                     <ClientForm/>
                 </TabsContent>
                 <TabsContent value="contacts">
-                    <AddContactInfo/>
+                    <div className="space-y-4">
+                        <AddContactInfo/>
+                        <AddContactInfo/>
+                    </div>
+
                 </TabsContent>
                 <TabsContent value="drivers">
                     <DriverForm/>

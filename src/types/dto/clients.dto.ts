@@ -1,9 +1,11 @@
+import {ICreateDriver, ICreateTrafficFine} from "@/types/dto/drivers.dto.ts";
+
 export interface ICreateClient {
     id_client?: number;
     personType: string;
     fullName: string;
     document: string;
-    rg: string | null;
+    rg: string;
     rgEmitDate: Date;
     rgExpired: Date;
     rgEmitBy: string;
@@ -19,6 +21,9 @@ export interface ICreateClient {
     observations?: string;
     address: string;
     zip_code?: string;
+    inputFile?: File;
+    drivers?: ICreateDriver[]
+    fines?: ICreateTrafficFine[]
 }
 
 export interface IAddressForm {

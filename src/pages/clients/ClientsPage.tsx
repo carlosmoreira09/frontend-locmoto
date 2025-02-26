@@ -38,7 +38,7 @@ export const ClientsPage: React.FC = () => {
     }
 
     const handleRowClick = (client: ICreateClient) => {
-        router(`/clients/client-details/`, { state: client})
+        router(`/clients/client-details/`, { state: client.id_client})
     }
 
     return (

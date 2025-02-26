@@ -1,4 +1,6 @@
 export interface ICreateDriver {
+    id?: number;
+    driverName: string;
     motherName: string;
     fatherName: string;
     city: string;
@@ -13,6 +15,7 @@ export interface ICreateDriver {
     driverObs?: string;
 }
 export interface ICreateTrafficFine {
+    id?: number;
     fineNumber: string
     vehicle: number
     fineDate: string
