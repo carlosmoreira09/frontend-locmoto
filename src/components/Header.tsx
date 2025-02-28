@@ -55,13 +55,14 @@ const menuItems = [
     },
     {
         title: "Multas",
-        submenu: [     {
+        submenu: [
+            {
             menuItem: "Cadastrar",
             endpoint: '/traffic-fines/add-fine'
-        },
+            },
             {
                 menuItem: "Listar",
-                endpoint: 'booking'
+                endpoint: '/traffic-fines'
             }],
     },
     {

@@ -4,7 +4,7 @@ import AppLayout from "../pages/AppLayout.tsx";
 import Dashboard from "../pages/home/Dashboard.tsx";
 import AddClientPage from "@/pages/clients/AddClientPage.tsx";
 import {VehicleRegistration} from "@/pages/vehicles/VehicleRegistration.tsx";
-import TrafficFinePage from "@/pages/traffic-fines/TrafficFinePage.tsx";
+import AddTrafficFine from "@/pages/traffic-fines/AddTrafficFine.tsx";
 import TablePricePage from "@/pages/table-price/TablePricePage.tsx";
 import ReceiptsPage from "@/pages/receipts/ReceiptsPage.tsx";
 import ClientDetails from "@/pages/clients/ClientDetailsPage.tsx";
@@ -13,6 +13,8 @@ import {DriversPage} from "@/pages/drivers/DriversPage.tsx";
 import {DriverForm} from "@/pages/drivers/components/DriverForm.tsx";
 import {VehicleDetails} from "@/pages/vehicles/VehicleDetailsPage.tsx";
 import {VehiclesPage} from "@/pages/vehicles/VehiclesPage.tsx";
+import {TrafficFinePage} from "@/pages/traffic-fines/TrafficFinePage.tsx";
+import {TrafficFineForm} from "@/pages/traffic-fines/components/TrafficFineForm.tsx";
 
 
 export const router = createBrowserRouter([
@@ -91,8 +93,16 @@ export const router = createBrowserRouter([
         element: <AppLayout />,
         children: [
             {
-                path: 'add-fine',
+                index: true,
                 element: <TrafficFinePage />
+            },
+            {
+                path: 'add-fine',
+                element: <AddTrafficFine />
+            },
+            {
+                path: 'fine-details',
+                element: <TrafficFineForm />
             }]
     },
     {

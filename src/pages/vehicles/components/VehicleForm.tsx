@@ -7,6 +7,7 @@ import {Button} from "@/components/ui/button.tsx";
 import {Textarea} from "@/components/ui/textarea.tsx";
 import {ICreateVehicle} from "@/types/dto/vehicles.dto.ts";
 import {Checkbox} from "@/components/ui/checkbox.tsx";
+import {useNavigate} from "react-router";
 interface VehicleProps {
     vehicleInfo?: ICreateVehicle
 }
@@ -14,6 +15,7 @@ export const VehicleForm: React.FC<VehicleProps> = ({vehicleInfo}) => {
     const { register, handleSubmit, formState: { errors } } = useForm<ICreateVehicle>()
     const [vehicle, setVehicle] = useState<ICreateVehicle | undefined>(undefined)
     const [isEditable, setIsEditable] = useState<boolean>(false)
+    const navigate = useNavigate()
     useEffect(() => {
         if(vehicleInfo) {
             setVehicle(vehicleInfo)
@@ -33,19 +35,25 @@ export const VehicleForm: React.FC<VehicleProps> = ({vehicleInfo}) => {
             <CardHeader>
                 <CardTitle className="flex justify-between">
                     {!isEditable ? 'Cadastro da Moto' : 'Informações da Moto'}
-                    <button  onClick={toggleEditClient} className="bg-amber-800 text-white p-4 rounded-full">
-                        {isEditable ? 'Editar Moto' : 'Cancelar'}
-                    </button>
+                    <div className="space-x-2">
+                        <Button onClick={() => navigate('/vehicles')}
+                                className="bg-amber-800 text-white cursor-pointer p-4 hover:bg-amber-700 rounded-full">
+                            Voltar
+                        </Button>
+                        <Button onClick={toggleEditClient} className="bg-amber-800 text-white cursor-pointer hover:bg-amber-700 p-4 rounded-full">
+                            {isEditable ? 'Editar Motorista' : 'Cancelar'}
+                        </Button>
+                    </div>
                 </CardTitle>
             </CardHeader>
             <CardContent>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <div className="space-y-2">
-                        <Label htmlFor="plateNumber">Placa</Label>
-                        <Input disabled={isEditable} placeholder={vehicle?.plateNumber}
-                               id="plateNumber"
-                               {...register('plateNumber', {required: 'Campo obrigatório'})}
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div className="space-y-2">
+                            <Label htmlFor="plateNumber">Placa</Label>
+                            <Input disabled={isEditable} placeholder={vehicle?.plateNumber}
+                                   id="plateNumber"
+                                   {...register('plateNumber', {required: 'Campo obrigatório'})}
                         />
                         {errors.plateNumber &&
                             <span className="text-red-500 text-sm">{errors.plateNumber.message}</span>}

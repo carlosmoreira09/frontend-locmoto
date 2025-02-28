@@ -9,6 +9,7 @@ import {Textarea} from "@/components/ui/textarea.tsx";
 import {Checkbox} from "@/components/ui/checkbox.tsx";
 import { format } from 'date-fns'
 import {ptBR} from "date-fns/locale";
+import {useNavigate} from "react-router";
 interface ClientInfoCardProps {
     clientInfo?: ICreateClient
 }
@@ -16,6 +17,7 @@ export const ClientForm: React.FC<ClientInfoCardProps> = ({clientInfo}) => {
     const { register, handleSubmit, formState: { errors } } = useForm<ICreateClient>();
     const [client, setClient] = useState<ICreateClient | undefined>(undefined)
     const [isEditable, setIsEditable] = useState<boolean>(false)
+    const navigate = useNavigate()
     useEffect(() => {
         if(clientInfo) {
             setClient(clientInfo)
@@ -34,10 +36,15 @@ export const ClientForm: React.FC<ClientInfoCardProps> = ({clientInfo}) => {
         <Card className="w-full mx-auto">
             <CardHeader>
                 <CardTitle className="flex justify-between">
-                    {!isEditable ? 'Cadastro do Cliente' : 'Informações do Cliente'}
-                    <button  onClick={toggleEditClient} className="bg-amber-800 text-white p-4 rounded-full">
+                  <span>{!isEditable ? 'Cadastro do Cliente' : 'Informações do Cliente'}</span>
+                    <div className="space-x-2">
+                    <Button onClick={() => navigate('/clients')} className="bg-amber-800 hover:bg-amber-700 text-white p-4 rounded-full">
+                        Voltar
+                    </Button>
+                    <Button  onClick={toggleEditClient} className="bg-amber-800 text-white p-4 rounded-full">
                         {isEditable ? 'Editar Cliente' : 'Cancelar'}
-                    </button>
+                    </Button>
+                    </div>
                 </CardTitle>
             </CardHeader>
             <form onSubmit={handleSubmit(onSubmit)}>

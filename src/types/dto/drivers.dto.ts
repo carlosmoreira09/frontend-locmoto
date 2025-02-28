@@ -1,4 +1,5 @@
 import {ICreateClient} from "@/types/dto/clients.dto.ts";
+import {ICreateVehicle} from "@/types/dto/vehicles.dto.ts";
 
 export interface ICreateDriver {
     id?: number;
@@ -20,7 +21,7 @@ export interface ICreateDriver {
 export interface ICreateTrafficFine {
     id?: number;
     fineNumber: string
-    vehicle: number
+    vehicle: ICreateVehicle
     fineDate: string
     autoNumber: string
     origin: string

@@ -9,6 +9,7 @@ import {ICreateVehicle} from "@/types/dto/vehicles.dto.ts";
 import {findOneVehicle} from "@/service/vehicles/vehicleService.ts";
 import VehicleForm from "@/pages/vehicles/components/VehicleForm.tsx";
 import {Textarea} from "@/components/ui/textarea.tsx";
+import {InsuranceForm} from "@/pages/insurance/InsuranceForm.tsx";
 
 export const VehicleDetails:React.FC = () => {
     const [vehicle,setVehicle] = useState<ICreateVehicle>()
@@ -52,6 +53,8 @@ export const VehicleDetails:React.FC = () => {
                     <TabsTrigger className="text-base" value="vehicle-details">Dados do Moto</TabsTrigger>
                     <TabsTrigger className="text-base" value="attachs">Anexos</TabsTrigger>
                     <TabsTrigger className="text-base" value="fines">Multas</TabsTrigger>
+                    <TabsTrigger className="text-base" value="insurance">Seguro</TabsTrigger>
+                    <TabsTrigger className="text-base" value="financial">Financiamento/Compra</TabsTrigger>
                     <TabsTrigger className="text-base" value="contracts">Contratos</TabsTrigger>
                 </TabsList>
                 <TabsContent value="vehicle-details">
@@ -63,6 +66,12 @@ export const VehicleDetails:React.FC = () => {
                     </div>
                 </TabsContent>
                 <TabsContent value="fines">
+                    <TrafficFines fines={vehicle?.trafficFines} />
+                </TabsContent>
+                <TabsContent value="insurance">
+                    <InsuranceForm insuranceInfo={vehicle?.insurance} />
+                </TabsContent>
+                <TabsContent value="financial">
                     <TrafficFines fines={vehicle?.trafficFines} />
                 </TabsContent>
                 <TabsContent value="contracts">

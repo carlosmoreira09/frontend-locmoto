@@ -10,13 +10,16 @@ const TablePricePage:React.FC = () => {
             <div className="flex items-center mb-4">
                 <PlusCircle className="mr-2 h-4 w-4"/> <h2 className="text-xl font-semibold"> Tablela de Preços </h2>
             </div>
-            <Tabs defaultValue="add-client" className="w-full">
+            <Tabs defaultValue="add-price" className="w-full">
                 <TabsList>
-                    <TabsTrigger className="text-base" value="add-client">Cadastrar Preço</TabsTrigger>
-                    <TabsTrigger className="text-base" value="add-client">Lista da Preços</TabsTrigger>
+                    <TabsTrigger className="text-base" value="add-price">Cadastrar Preço</TabsTrigger>
+                    <TabsTrigger className="text-base" value="table-list">Lista da Preços</TabsTrigger>
 
                 </TabsList>
-                <TabsContent value="add-client">
+                <TabsContent value="add-price">
+                    <AddVehiclePrice/>
+                </TabsContent>
+                <TabsContent value="table-list">
                     <AddVehiclePrice/>
                 </TabsContent>
             </Tabs>

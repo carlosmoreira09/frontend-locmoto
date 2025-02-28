@@ -58,14 +58,13 @@ export const DriverForm: React.FC = () => {
                 <CardTitle className="flex justify-between">
                     <span>{!isEditable ? 'Cadastro de Motorista' : 'Informações do Motorista'}</span>
                     <div className="space-x-2">
-                        <Button onClick={() => navigate('/drivers')} className="bg-amber-800 text-white p-4 rounded-full">
+                        <Button onClick={() => navigate('/drivers')} className="bg-amber-800 hover:bg-amber-700 text-white p-4 rounded-full">
                             Voltar
                         </Button>
-                        <Button onClick={toggleEditClient} className="bg-amber-800 text-white p-4 rounded-full">
+                        <Button onClick={toggleEditClient} className="bg-amber-800 hover:bg-amber-700 text-white p-4 rounded-full">
                             {isEditable ? 'Editar Motorista' : 'Cancelar'}
                         </Button>
                     </div>
-
                 </CardTitle>
             </CardHeader>
             <form onSubmit={handleSubmit(onSubmit)}>

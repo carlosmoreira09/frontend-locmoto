@@ -1,4 +1,5 @@
 import {ICreateTrafficFine} from "@/types/dto/drivers.dto.ts";
+import {ICreateInsurance} from "@/types/dto/insurance.dto.ts";
 
 export interface ICreateVehicle {
     id?: number;
@@ -16,4 +17,5 @@ export interface ICreateVehicle {
     location: string;
     tenant: number;
     trafficFines?: ICreateTrafficFine[]
+    insurance: ICreateInsurance
 }
