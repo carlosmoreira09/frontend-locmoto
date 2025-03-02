@@ -1,6 +1,6 @@
-import { Shield, Wallet, Clock } from 'lucide-react'
+import {FileText, AlertCircle, BikeIcon as Motorcycle} from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import {ActivityItem} from "@/pages/home/components/ActivityItem.tsx";
 
 interface PartnerInfo {
     name: string
@@ -18,44 +18,38 @@ interface LeftSidebarProps {
     contacts: ContactInfo[]
 }
 
-export function LeftSidebar({ partnerInfo, contacts }: LeftSidebarProps) {
+export function LeftSidebar({ contacts }: LeftSidebarProps) {
     return (
         <div className="space-y-6">
-            <Card className="overflow-hidden">
-                <div className="bg-amber-500 p-4">
-                    <h3 className="text-lg font-bold text-white">{partnerInfo.name}</h3>
-                    <p className="text-sm text-amber-100">{partnerInfo.description}</p>
-                </div>
-                <CardContent className="p-4 space-y-4">
-                    <div className="flex justify-center py-4">
-                        <img
-                            src={partnerInfo.logo}
-                            width={160}
-                            height={80}
-                            alt={`${partnerInfo.name} Logo`}
-                            className="h-auto"
-                        />
-                    </div>
-                    <div className="space-y-3">
-                        <div className="flex items-center gap-2">
-                            <Shield className="h-4 w-4 text-amber-600" />
-                            <span className="text-sm">Garantia de qualidade</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Wallet className="h-4 w-4 text-amber-600" />
-                            <span className="text-sm">Melhores preços</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Clock className="h-4 w-4 text-amber-600" />
-                            <span className="text-sm">Atendimento 24h</span>
-                        </div>
-                    </div>
-                    <Button variant="outline" className="w-full mt-2">
-                        Conheça nossos modelos
-                    </Button>
+            <Card>
+                <CardHeader>
+                    <CardTitle>Atividade Recente</CardTitle>
+                    <CardDescription>Últimas 24 horas</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                    <ActivityItem
+                        icon={<FileText className="h-4 w-4 text-amber-600" />}
+                        iconBgColor="bg-amber-100"
+                        title="Novo contrato assinado"
+                        description="Cliente: João Silva - Yamaha MT-07"
+                        time="Há 2 horas"
+                    />
+                    <ActivityItem
+                        icon={<AlertCircle className="h-4 w-4 text-yellow-600" />}
+                        iconBgColor="bg-yellow-100"
+                        title="Nova multa registrada"
+                        description="Moto: YBR-150 - Placa: ABC1234"
+                        time="Há 5 horas"
+                    />
+                    <ActivityItem
+                        icon={<Motorcycle className="h-4 w-4 text-green-600" />}
+                        iconBgColor="bg-green-100"
+                        title="Moto devolvida"
+                        description="Cliente: Maria Oliveira - Yamaha Fazer 250"
+                        time="Há 8 horas"
+                    />
                 </CardContent>
             </Card>
-
             <Card>
                 <CardHeader className="pb-2">
                     <CardTitle>Contatos Rápidos</CardTitle>

@@ -6,11 +6,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import logoClintia  from '../../assets/imagem-logo-grande.png'
 import {LeftSidebar} from "@/pages/home/components/LeftSideBar.tsx";
 import {InfoCard} from "@/pages/home/components/InfoCard.tsx";
-import {ActivityItem} from "@/pages/home/components/ActivityItem.tsx";
 import {RightSidebar} from "@/pages/home/components/RighSideBar.tsx";
 import {Link} from "react-router-dom";
 
-export default function HomePage() {
+export default function Home() {
     const [activeTab, setActiveTab] = useState("dashboard")
 
     const partnerInfo = {
@@ -26,8 +25,8 @@ export default function HomePage() {
     ]
 
     const featuredBikes = [
-        { name: "Yamaha MT-07", image: "/placeholder.svg?height=120&width=240", price: "R$ 180,00" },
-        { name: "Yamaha Fazer 250", image: "/placeholder.svg?height=120&width=240", price: "R$ 120,00" },
+        { name: "Yamaha MT-07", image: logoClintia, price: "R$ 180,00" },
+        { name: "Yamaha Fazer 250", image: logoClintia, price: "R$ 120,00" },
     ]
 
     const rentalTips = [
@@ -43,15 +42,12 @@ export default function HomePage() {
 
     return (
         <div className="flex min-h-screen flex-col">
-            {/* Main Content */}
             <main className="flex-1 container py-6">
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-                    {/* Left Sidebar */}
                     <div className="md:col-span-3">
                         <LeftSidebar partnerInfo={partnerInfo} contacts={contacts} />
                     </div>
 
-                    {/* Main Dashboard */}
                     <div className="md:col-span-6 space-y-6">
                         <div className="flex items-center justify-between">
                             <h2 className="text-2xl font-bold tracking-tight">Dashboard</h2>
@@ -110,35 +106,6 @@ export default function HomePage() {
                                     />
                                 </div>
 
-                                <Card>
-                                    <CardHeader>
-                                        <CardTitle>Atividade Recente</CardTitle>
-                                        <CardDescription>Últimas 24 horas</CardDescription>
-                                    </CardHeader>
-                                    <CardContent className="space-y-4">
-                                        <ActivityItem
-                                            icon={<FileText className="h-4 w-4 text-amber-600" />}
-                                            iconBgColor="bg-amber-100"
-                                            title="Novo contrato assinado"
-                                            description="Cliente: João Silva - Yamaha MT-07"
-                                            time="Há 2 horas"
-                                        />
-                                        <ActivityItem
-                                            icon={<AlertCircle className="h-4 w-4 text-yellow-600" />}
-                                            iconBgColor="bg-yellow-100"
-                                            title="Nova multa registrada"
-                                            description="Moto: YBR-150 - Placa: ABC1234"
-                                            time="Há 5 horas"
-                                        />
-                                        <ActivityItem
-                                            icon={<Motorcycle className="h-4 w-4 text-green-600" />}
-                                            iconBgColor="bg-green-100"
-                                            title="Moto devolvida"
-                                            description="Cliente: Maria Oliveira - Yamaha Fazer 250"
-                                            time="Há 8 horas"
-                                        />
-                                    </CardContent>
-                                </Card>
                             </TabsContent>
 
                             <TabsContent value="contratos" className="space-y-4">
@@ -191,8 +158,6 @@ export default function HomePage() {
                     </div>
                 </div>
             </main>
-
-            {/* Footer */}
             <footer className="border-t py-6 md:py-0">
                 <div className="container flex flex-col md:flex-row items-center justify-between gap-4 md:h-16">
                     <div className="flex items-center gap-2">

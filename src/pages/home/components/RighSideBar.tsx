@@ -1,5 +1,4 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { FeaturedBike } from "./FeaturedBike"
 
 interface RentalTip {
     title: string
@@ -15,20 +14,9 @@ interface RightSidebarProps {
     rentalTips: RentalTip[]
 }
 
-export function RightSidebar({ featuredBikes, rentalTips }: RightSidebarProps) {
+export function RightSidebar({  rentalTips }: RightSidebarProps) {
     return (
         <div className="space-y-6">
-            <Card>
-                <CardHeader className="pb-2">
-                    <CardTitle>Modelos em Destaque</CardTitle>
-                    <CardDescription>Nossas motos mais populares</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    {featuredBikes.map((bike, index) => (
-                        <FeaturedBike key={index} {...bike} />
-                    ))}
-                </CardContent>
-            </Card>
 
             <Card>
                 <CardHeader className="pb-2">

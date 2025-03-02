@@ -1,30 +1,64 @@
-import React from "react";
-import {PlusCircle} from "lucide-react";
-import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs.tsx";
-import {VehiclePriceForm} from "@/pages/table-price/components/VehiclePriceForm.tsx";
+import React, {useEffect} from "react"
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { UserPlus } from "lucide-react"
+import {useNavigate} from "react-router";
+import {ICreatePriceTableDto} from "@/types/dto/table-price.dto.ts";
+import {format} from "date-fns";
+import {ptBR} from "date-fns/locale";
+import {findaAllPrices} from "@/service/table-price/tablePriceService.ts";
 
-const TablePricePage:React.FC = () => {
+
+export const TablePricePage: React.FC = () => {
+    const [prices,setPrices] = useState<ICreatePriceTableDto[]>()
+    const router = useNavigate()
+
+    const fetchPrices = async () => {
+        const result = await findaAllPrices()
+        setPrices(result?.data)
+    }
+    useEffect(() => {
+        fetchPrices().then()
+    }, []);
+
+    const handleRowClick = (id_price: number | undefined) => {
+        router(`/table-price/vehicle-price/`, { state: id_price})
+    }
 
     return (
-        <div>
-            <div className="flex items-center mb-4">
-                <PlusCircle className="mr-2 h-4 w-4"/> <h2 className="text-xl font-semibold"> Tablela de Preços </h2>
-            </div>
-            <Tabs defaultValue="add-price" className="w-full">
-                <TabsList>
-                    <TabsTrigger className="text-base" value="add-price">Cadastrar Preço</TabsTrigger>
-                    <TabsTrigger className="text-base" value="table-list">Lista da Preços</TabsTrigger>
-                </TabsList>
-                <TabsContent value="add-price">
-                    <VehiclePriceForm/>
-                </TabsContent>
-                <TabsContent value="table-list">
-                    <VehiclePriceForm/>
-                </TabsContent>
-            </Tabs>
+        <div className="container mx-auto p-4">
 
+            <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-bold">Tabela de Preço</h2>
+                <Button onClick={() => router("/clients/add-client")}>
+                    <UserPlus className="mr-2 h-4 w-4" /> Adicionar Preço
+                </Button>
+            </div>
+
+            <Table>
+                <TableHeader>
+                    <TableRow>
+                        <TableHead className="w-[100px]">ID</TableHead>
+                        <TableHead>Name</TableHead>
+                        <TableHead>Periodo</TableHead>
+                        <TableHead>Valido de:</TableHead>
+                        <TableHead>Valido até</TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    {prices?.map((item) => (
+                        <TableRow key={item.id} onClick={() => handleRowClick(item.id)} className="cursor-pointer hover:bg-muted">
+                            <TableCell className="font-medium">{item.name}</TableCell>
+                            <TableCell>{item.price}</TableCell>
+                            <TableCell>{item.period}</TableCell>
+                            <TableCell>{format(item.validFrom, "dd/MM/yyyy", { locale: ptBR })}</TableCell>
+                            <TableCell>{format(item.validTo, "dd/MM/yyyy", { locale: ptBR })}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
         </div>
     )
 }
 
-export default TablePricePage;

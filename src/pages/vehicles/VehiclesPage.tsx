@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Search, UserPlus } from "lucide-react"
+import {PlusCircle, Search} from "lucide-react"
 import {useNavigate} from "react-router";
 import {findaAllVehicles} from "@/service/vehicles/vehicleService.ts";
 import {ICreateVehicle} from "@/types/dto/vehicles.dto.ts";
@@ -60,10 +60,13 @@ export const VehiclesPage: React.FC = () => {
             </Card>
 
             <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold">Listagem de clientes</h2>
-                <Button onClick={() => router("/clients/add-client")}>
-                    <UserPlus className="mr-2 h-4 w-4" /> Adicionar novo cliente
-                </Button>
+                <h2 className="text-2xl font-bold">Listagem de Motos</h2>
+               <div className="flex items-center">
+                   <PlusCircle size={20} className="mr-2" /> Adicionar nova moto
+                   <Button onClick={() => router("/clients/add-client")} />
+
+               </div>
+
             </div>
 
             <Table>

@@ -1,11 +1,10 @@
 import {createBrowserRouter, Navigate} from "react-router-dom";
 import Login from "../pages/auth/Login.tsx";
 import AppLayout from "../pages/AppLayout.tsx";
-import Dashboard from "../pages/home/Dashboard.tsx";
 import AddClientPage from "@/pages/clients/AddClientPage.tsx";
 import {VehicleRegistration} from "@/pages/vehicles/VehicleRegistration.tsx";
 import AddTrafficFine from "@/pages/traffic-fines/AddTrafficFine.tsx";
-import TablePricePage from "@/pages/table-price/TablePricePage.tsx";
+import AddTablePricePage from "@/pages/table-price/AddTablePricePage.tsx";
 import ReceiptsPage from "@/pages/receipts/ReceiptsPage.tsx";
 import ClientDetails from "@/pages/clients/ClientDetailsPage.tsx";
 import {ClientsPage} from "@/pages/clients/ClientsPage.tsx";
@@ -13,8 +12,10 @@ import {DriversPage} from "@/pages/drivers/DriversPage.tsx";
 import {DriverForm} from "@/pages/drivers/components/DriverForm.tsx";
 import {VehicleDetails} from "@/pages/vehicles/VehicleDetailsPage.tsx";
 import {VehiclesPage} from "@/pages/vehicles/VehiclesPage.tsx";
-import {TrafficFinePage} from "@/pages/traffic-fines/TrafficFinePage.tsx";
 import {TrafficFineForm} from "@/pages/traffic-fines/components/TrafficFineForm.tsx";
+import {TablePricePage} from "@/pages/table-price/TablePricePage.tsx";
+import Home from "../pages/home/Home.tsx";
+import {TrafficFinePage} from "@/pages/traffic-fines/TrafficFinePage.tsx";
 
 
 export const router = createBrowserRouter([
@@ -32,7 +33,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Dashboard />
+                element: <Home />
             }]
     },
     {
@@ -110,8 +111,16 @@ export const router = createBrowserRouter([
         element: <AppLayout />,
         children: [
             {
-                path: 'add-price',
+                index: true,
                 element: <TablePricePage />
+            },
+            {
+                path: 'add-price',
+                element: <AddTablePricePage />
+            },
+            {
+                path: 'vehicle-price',
+                element: <AddTablePricePage />
             }]
     },
     {

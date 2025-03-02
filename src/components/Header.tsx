@@ -70,12 +70,12 @@ const menuItems = [
         title: "Tabela de Preços",
         submenu: [
             {
-            menuItem: "Cadastrar",
-            endpoint: '/table-price/add-price'
+                menuItem: "Cadastrar",
+                endpoint: '/table-price/add-price'
             },
             {
-                menuItem: "Gerenciar",
-                endpoint: 'tableprice'
+                menuItem: "Tabela de Preços",
+                endpoint: '/table-price'
             }],
     },
     {
@@ -120,13 +120,12 @@ export default function Header() {
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault()
-        // Implement search logic here
         console.log("Searching for:", searchTerm)
     }
     const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
 
     return (
-        <header className="h-56 from-yellow-500 bg-gradient-to-bl via-yellow-600 to-yellow-400 shadow-md">
+        <header className="h-56 from-yellow-400 bg-gradient-to-b via-amber-300 to-yellow-600 shadow-md">
             <div className="flex items-center">
                 <div className="relative top-0 left-0 mt-8">
                     <img
@@ -154,7 +153,7 @@ export default function Header() {
                                 />
                                 <Button className="cursor-pointer text-white bg-amber-700 rounded-full hover:bg-amber-800"
                                         type="submit" size="lg">
-                                    <Search className="mr-2 h-4 w-4"/> Search
+                                    <Search className="mr-2 h-4 w-4"/> Procurar
                                 </Button>
                             </form>
                         </CardContent>
@@ -207,7 +206,6 @@ export default function Header() {
                     </div>
                 </div>
             </div>
-            {/* Mobile menu */}
             {isMobileMenuOpen && (
                 <div className="lg:hidden bg-white">
                     <ul className="px-2 pt-2 pb-4 space-y-1">

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { useForm } from 'react-hook-form'
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
@@ -6,15 +6,29 @@ import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
 import {ICreatePriceTableDto} from "@/types/dto/table-price.dto.ts";
+import {useNavigate} from "react-router";
+import {format} from "date-fns";
+import {ptBR} from "date-fns/locale";
 
-
-export const VehiclePriceForm: React.FC = () => {
+interface VehiclePriceFormProps {
+    priceInfo?: ICreatePriceTableDto
+}
+export const VehiclePriceForm: React.FC<VehiclePriceFormProps> = ({ priceInfo }) => {
     const {
         register,
         handleSubmit,
         formState: { errors, isSubmitting }
     } = useForm<ICreatePriceTableDto>()
     const [error, setError] = React.useState<string | null>(null)
+    const [price, setPrice] = useState<ICreatePriceTableDto | undefined>(undefined)
+    const [isEditable, setIsEditable] = useState<boolean>(false)
+    useEffect(() => {
+        if(priceInfo) {
+            setPrice(priceInfo)
+            setIsEditable(true)
+        }
+    }, [priceInfo]);
+    const navigate = useNavigate()
 
     const onSubmit = async (data: ICreatePriceTableDto) => {
         try {
@@ -24,28 +38,41 @@ export const VehiclePriceForm: React.FC = () => {
             setError('An error occurred while creating the price table. ' + err)
         }
     }
+    const toggleEditClient = () => {
+        setIsEditable(!isEditable)
+    }
 
     return (
         <Card className="w-full mx-auto">
             <CardHeader>
-                <CardTitle>Create Price Table</CardTitle>
+                <CardTitle className="flex justify-between">
+                    <span>{!isEditable ? 'Cadastro do Preço' : 'Informações do Cadatro'}</span>
+                    <div className="space-x-2">
+                        <Button onClick={() => navigate('/table-price')} className="bg-amber-800 hover:bg-amber-700 text-white p-4 rounded-full">
+                            Voltar
+                        </Button>
+                        <Button  onClick={toggleEditClient} className="bg-amber-800 text-white p-4 rounded-full">
+                            {isEditable ? 'Editar Preço' : 'Cancelar'}
+                        </Button>
+                    </div>
+                </CardTitle>
             </CardHeader>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <CardContent className="grid grid-cols-1 md:grid-cols-5 gap-4">
                     <div className="space-y-2">
                         <Label htmlFor="name">Escolha a moto</Label>
-                        <Input id="name" {...register("name", { required: "Name is required" })} />
+                        <Input disabled={isEditable} placeholder={price?.name} id="name" {...register("name", { required: "Name is required" })} />
                         {errors.name && <span className="text-red-500 text-sm">{errors.name.message}</span>}
                     </div>
 
                     <div className="space-y-2">
-                        <Label htmlFor="description">Escolha o periodo</Label>
-                        <Input id="description" {...register("description")} />
+                        <Label htmlFor="period">Escolha o periodo</Label>
+                        <Input disabled={isEditable} placeholder={price?.period} id="description" {...register("period")} />
                     </div>
 
                     <div className="space-y-2">
                         <Label htmlFor="price">Price</Label>
-                        <Input
+                        <Input disabled={isEditable} placeholder={price?.price.toString()}
                             id="price"
                             type="number"
                             step="0.01"
@@ -60,17 +87,17 @@ export const VehiclePriceForm: React.FC = () => {
 
                     <div className="space-y-2">
                         <Label htmlFor="validFrom">Inicia em:</Label>
-                        <Input id="validFrom" type="date" {...register("validFrom", { required: "Valid from date is required" })} />
+                        <Input disabled={isEditable} placeholder={price?.validFrom ? format(price?.validFrom, "yyyy-MM-dd", { locale: ptBR}) : ''} id="validFrom" type="date" {...register("validFrom", { required: "Valid from date is required" })} />
                         {errors.validFrom && <span className="text-red-500 text-sm">{errors.validFrom.message}</span>}
                     </div>
 
                     <div className="space-y-2">
                         <Label htmlFor="validTo">Termina em:</Label>
-                        <Input id="validTo" type="date" {...register("validTo")} />
+                        <Input disabled={isEditable} placeholder={price?.validTo ? format(price?.validTo, "yyyy-MM-dd", { locale: ptBR}) : ''} id="validTo" type="date" {...register("validTo")} />
                     </div>
 
                     <div className="flex items-center space-x-2 col-span-full">
-                        <Checkbox id="isActive" {...register("isActive")} />
+                        <Checkbox disabled={isEditable} checked={price?.isActive} id="isActive" {...register("isActive")} />
                         <Label htmlFor="isActive">Active</Label>
                     </div>
 

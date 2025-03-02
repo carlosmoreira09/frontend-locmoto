@@ -1,7 +1,7 @@
 export interface ICreatePriceTableDto {
     id?: number;
     name: string;
-    description?: string;
+    period?: string;
     price: number;
     currency: string;
     validFrom: Date;
