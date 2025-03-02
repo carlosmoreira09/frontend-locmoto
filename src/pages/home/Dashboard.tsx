@@ -99,7 +99,7 @@ export default function Dashboard() {
                             </div>
                         </div>
 
-                        <Tabs defaultValue="dashboard" className="space-y-4" onValueChange={setActiveTab}>
+                        <Tabs defaultValue={activeTab} className="space-y-4" onValueChange={setActiveTab}>
                             <TabsList>
                                 <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
                                 <TabsTrigger value="contratos">Contratos</TabsTrigger>
