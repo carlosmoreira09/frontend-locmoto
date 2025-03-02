@@ -5,18 +5,18 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
-import {CreatePriceTableDto} from "@/types/dto/table-price.dto.ts";
+import {ICreatePriceTableDto} from "@/types/dto/table-price.dto.ts";
 
 
-export const AddVehiclePrice: React.FC = () => {
+export const VehiclePriceForm: React.FC = () => {
     const {
         register,
         handleSubmit,
         formState: { errors, isSubmitting }
-    } = useForm<CreatePriceTableDto>()
+    } = useForm<ICreatePriceTableDto>()
     const [error, setError] = React.useState<string | null>(null)
 
-    const onSubmit = async (data: CreatePriceTableDto) => {
+    const onSubmit = async (data: ICreatePriceTableDto) => {
         try {
             console.log(data)
             // Implementar lógica de envio aqui

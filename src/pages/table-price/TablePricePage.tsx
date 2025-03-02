@@ -1,7 +1,7 @@
 import React from "react";
 import {PlusCircle} from "lucide-react";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs.tsx";
-import {AddVehiclePrice} from "@/pages/table-price/components/add-vehicle-price.tsx";
+import {VehiclePriceForm} from "@/pages/table-price/components/VehiclePriceForm.tsx";
 
 const TablePricePage:React.FC = () => {
 
@@ -14,13 +14,12 @@ const TablePricePage:React.FC = () => {
                 <TabsList>
                     <TabsTrigger className="text-base" value="add-price">Cadastrar Preço</TabsTrigger>
                     <TabsTrigger className="text-base" value="table-list">Lista da Preços</TabsTrigger>
-
                 </TabsList>
                 <TabsContent value="add-price">
-                    <AddVehiclePrice/>
+                    <VehiclePriceForm/>
                 </TabsContent>
                 <TabsContent value="table-list">
-                    <AddVehiclePrice/>
+                    <VehiclePriceForm/>
                 </TabsContent>
             </Tabs>
 
