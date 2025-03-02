@@ -5,6 +5,7 @@ import logoClintia  from '../assets/imagem-logo-grande.png'
 import {CardContent, CardHeader, CardTitle} from "@/components/ui/card.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {Button} from "@/components/ui/button.tsx";
+import {useNavigate} from "react-router";
 
 const menuItems = [
     {
@@ -115,7 +116,7 @@ export default function Header() {
     const [activeMenu, setActiveMenu] = useState<string | null>(null)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [searchTerm, setSearchTerm] = useState("")
-
+    const navigate = useNavigate()
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault()
@@ -134,6 +135,7 @@ export default function Header() {
                         width={200}
                         height={140}
                         className="mt-5 ml-5 rounded-full"
+                        onClick={() => navigate('/home')}
                     />
                 </div>
                 <div className="flex-1 flex justify-center mt-5">
