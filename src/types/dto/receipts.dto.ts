@@ -1,5 +1,6 @@
 
-export interface CreateReceiptDto {
+export interface ICreateReceiptDto {
+    id?: number;
     status: string;
     companyName: string;
     nfseNumber: string;

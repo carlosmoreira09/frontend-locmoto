@@ -1,4 +1,4 @@
-import type React from "react"
+import React, {useEffect} from "react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
@@ -6,22 +6,33 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
-import {CreateReceiptDto} from "@/types/dto/receipts.dto.ts";
+import {ICreateReceiptDto} from "@/types/dto/receipts.dto.ts";
+import {format} from "date-fns";
+import {ptBR} from "date-fns/locale";
+interface ReceiptProps {
+    receiptInfo?: ICreateReceiptDto
+}
 
-
-const ReceiptForm: React.FC = () => {
+const ReceiptForm: React.FC<ReceiptProps> = ({receiptInfo}) => {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [error, setError] = useState<string | null>(null)
-
+    const [receipt, setReceipt] = useState<ICreateReceiptDto | undefined>(undefined)
+    const [isEditable, setIsEditable] = useState<boolean>(false)
+    useEffect(() => {
+        if(receiptInfo) {
+            setReceipt(receiptInfo)
+            setIsEditable(true)
+        }
+    }, [receiptInfo]);
     const {
         register,
         handleSubmit,
         reset,
         formState: { errors },
         setValue,
-    } = useForm<CreateReceiptDto>()
+    } = useForm<ICreateReceiptDto>()
 
-    const onSubmit = async (data: CreateReceiptDto) => {
+    const onSubmit = async (data: ICreateReceiptDto) => {
         setIsSubmitting(true)
         console.log(data)
         setIsSubmitting(false)
@@ -40,7 +51,7 @@ const ReceiptForm: React.FC = () => {
                 <CardContent className="grid grid-cols-1 md:grid-cols-5 gap-4">
                     <div className="space-y-2">
                         <Label htmlFor="status">Status</Label>
-                        <Select onValueChange={(value) => setValue("status", value)}>
+                        <Select disabled={isEditable} defaultValue={receipt?.status} onValueChange={(value) => setValue("status", value)}>
                             <SelectTrigger id="status">
                                 <SelectValue placeholder="Select status" />
                             </SelectTrigger>
@@ -55,25 +66,25 @@ const ReceiptForm: React.FC = () => {
 
                     <div className="space-y-2">
                         <Label htmlFor="companyName">Company Name</Label>
-                        <Input id="companyName" {...register("companyName", { required: "Company name is required" })} />
+                        <Input disabled={isEditable} placeholder={receipt?.companyName} id="companyName" {...register("companyName", { required: "Company name is required" })} />
                         {errors.companyName && <span className="text-red-500 text-sm">{errors.companyName.message}</span>}
                     </div>
 
                     <div className="space-y-2">
                         <Label htmlFor="nfseNumber">NFSe Number</Label>
-                        <Input id="nfseNumber" {...register("nfseNumber", { required: "NFSe number is required" })} />
+                        <Input disabled={isEditable} placeholder={receipt?.nfseNumber} id="nfseNumber" {...register("nfseNumber", { required: "NFSe number is required" })} />
                         {errors.nfseNumber && <span className="text-red-500 text-sm">{errors.nfseNumber.message}</span>}
                     </div>
 
                     <div className="space-y-2">
                         <Label htmlFor="nfseDate">NFSe Date</Label>
-                        <Input id="nfseDate" type="date" {...register("nfseDate", { required: "NFSe date is required" })} />
+                        <Input disabled={isEditable} placeholder={receipt?.nfseDate?.toLocaleDateString()} id="nfseDate" type="date" {...register("nfseDate", { required: "NFSe date is required" })} />
                         {errors.nfseDate && <span className="text-red-500 text-sm">{errors.nfseDate.message}</span>}
                     </div>
 
                     <div className="space-y-2">
                         <Label htmlFor="expiredDate">Expired Date</Label>
-                        <Input
+                        <Input disabled={isEditable} placeholder={receipt?.expiredDate?.toLocaleDateString()}
                             id="expiredDate"
                             type="date"
                             {...register("expiredDate", { required: "Expired date is required" })}
@@ -83,7 +94,7 @@ const ReceiptForm: React.FC = () => {
 
                     <div className="space-y-2">
                         <Label htmlFor="monthReference">Month Reference</Label>
-                        <Input
+                        <Input disabled={isEditable} value={receipt?.monthReference ? format(receipt.monthReference, "dd/MM/yyyy", { locale: ptBR}) : ''}
                             id="monthReference"
                             type="date"
                             {...register("monthReference", { required: "Month reference is required" })}
@@ -93,7 +104,7 @@ const ReceiptForm: React.FC = () => {
 
                     <div className="space-y-2">
                         <Label htmlFor="contractNumber">Contract Number</Label>
-                        <Input
+                        <Input disabled={isEditable} placeholder={receipt?.companyName}
                             id="contractNumber"
                             type="number"
                             {...register("contractNumber", {
@@ -106,9 +117,9 @@ const ReceiptForm: React.FC = () => {
 
                     <div className="space-y-2">
                         <Label htmlFor="client">Client ID</Label>
-                        <Input
+                        <Input disabled={isEditable} value={receipt?.client}
                             id="client"
-                            type="number"
+                            type="string"
                             {...register("client", {
                                 required: "Client ID is required",
                                 valueAsNumber: true,
@@ -119,7 +130,10 @@ const ReceiptForm: React.FC = () => {
 
                     <div className="space-y-2">
                         <Label htmlFor="price">Price</Label>
-                        <Input
+                        <Input disabled={isEditable} value={Number(receipt?.price).toLocaleString('pt-BR', {
+                            maximumFractionDigits: 2,
+                            minimumIntegerDigits: 2
+                        })}
                             id="price"
                             type="number"
                             step="0.01"

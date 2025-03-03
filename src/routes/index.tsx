@@ -5,7 +5,7 @@ import AddClientPage from "@/pages/clients/AddClientPage.tsx";
 import {VehicleRegistration} from "@/pages/vehicles/VehicleRegistration.tsx";
 import AddTrafficFine from "@/pages/traffic-fines/AddTrafficFine.tsx";
 import AddTablePricePage from "@/pages/table-price/AddTablePricePage.tsx";
-import ReceiptsPage from "@/pages/receipts/ReceiptsPage.tsx";
+import AddReceiptsPage from "@/pages/receipts/AddReceiptsPage.tsx";
 import ClientDetails from "@/pages/clients/ClientDetailsPage.tsx";
 import {ClientsPage} from "@/pages/clients/ClientsPage.tsx";
 import {DriversPage} from "@/pages/drivers/DriversPage.tsx";
@@ -16,6 +16,7 @@ import {TrafficFineForm} from "@/pages/traffic-fines/components/TrafficFineForm.
 import {TablePricePage} from "@/pages/table-price/TablePricePage.tsx";
 import Home from "../pages/home/Home.tsx";
 import {TrafficFinePage} from "@/pages/traffic-fines/TrafficFinePage.tsx";
+import {ReceiptsPage} from "@/pages/receipts/ReceiptsPage.tsx";
 
 
 export const router = createBrowserRouter([
@@ -128,8 +129,17 @@ export const router = createBrowserRouter([
         element: <AppLayout />,
         children: [
             {
-                path: 'new-receipt',
+                index: true,
                 element: <ReceiptsPage />
+            },
+
+            {
+                path: 'new-receipt',
+                element: <AddReceiptsPage />
+            },
+            {
+                path: 'receipt-details',
+                element: <AddReceiptsPage />
             }]
     },
 

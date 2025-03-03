@@ -26,9 +26,7 @@ const AddTablePricePage:React.FC = () => {
            } finally {
                setIsLoading(false)
            }
-
         }
-
     }
     useEffect(() => {
         fetchPrices().then()
