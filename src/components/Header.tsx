@@ -82,12 +82,12 @@ const menuItems = [
         title: "Relatórios",
         submenu: [
             {
-                menuItem: "Lista de Recibos",
+                menuItem: "Recibos",
                 endpoint: "/receipts"
             },
             {
-                menuItem: "Gerar Recibos",
-                endpoint: '/receipts/new-receipt'
+                menuItem: "Seguros",
+                endpoint: '/insurances'
             },
             {
                 menuItem: "Financeiro",

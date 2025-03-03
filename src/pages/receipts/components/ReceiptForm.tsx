@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import {ICreateReceiptDto} from "@/types/dto/receipts.dto.ts";
 import {format} from "date-fns";
 import {ptBR} from "date-fns/locale";
+import {useNavigate} from "react-router";
 interface ReceiptProps {
     receiptInfo?: ICreateReceiptDto
 }
@@ -18,6 +19,7 @@ const ReceiptForm: React.FC<ReceiptProps> = ({receiptInfo}) => {
     const [error, setError] = useState<string | null>(null)
     const [receipt, setReceipt] = useState<ICreateReceiptDto | undefined>(undefined)
     const [isEditable, setIsEditable] = useState<boolean>(false)
+    const navigate = useNavigate()
     useEffect(() => {
         if(receiptInfo) {
             setReceipt(receiptInfo)
@@ -45,7 +47,14 @@ const ReceiptForm: React.FC<ReceiptProps> = ({receiptInfo}) => {
     return (
         <Card className="w-full mx-auto">
             <CardHeader>
-                <CardTitle>Gerar Recibo</CardTitle>
+                <CardTitle className="flex justify-between">
+                    <span>Gerar Recibo</span>
+                    <div className="space-x-2">
+                        <Button onClick={() => navigate('/receipts')} className="bg-amber-800 hover:bg-amber-700 text-white p-4 rounded-full">
+                            Voltar
+                        </Button>
+                    </div>
+                </CardTitle>
             </CardHeader>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <CardContent className="grid grid-cols-1 md:grid-cols-5 gap-4">

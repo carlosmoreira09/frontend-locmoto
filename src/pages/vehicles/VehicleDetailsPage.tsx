@@ -9,7 +9,7 @@ import {ICreateVehicle} from "@/types/dto/vehicles.dto.ts";
 import {findOneVehicle} from "@/service/vehicles/vehicleService.ts";
 import VehicleForm from "@/pages/vehicles/components/VehicleForm.tsx";
 import {Textarea} from "@/components/ui/textarea.tsx";
-import {InsuranceForm} from "@/pages/insurance/InsuranceForm.tsx";
+import {InsuranceForm} from "@/pages/insurance/components/InsuranceForm.tsx";
 
 export const VehicleDetails:React.FC = () => {
     const [vehicle,setVehicle] = useState<ICreateVehicle>()

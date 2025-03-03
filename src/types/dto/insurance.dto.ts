@@ -1,4 +1,5 @@
 export interface ICreateInsurance {
+    id?: number
     companyName: string
     policyNumber: string
     startDate: string

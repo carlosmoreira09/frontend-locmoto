@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react"
 import { useForm } from "react-hook-form"
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card.tsx"
+import { Label } from "@/components/ui/label.tsx"
+import { Input } from "@/components/ui/input.tsx"
+import { Button } from "@/components/ui/button.tsx"
 import {ICreateInsurance} from "@/types/dto/insurance.dto.ts";
 import {useNavigate} from "react-router";
 
@@ -39,7 +39,7 @@ export const InsuranceForm: React.FC<InsuranceProps> = ({insuranceInfo}) => {
                 <CardTitle className="flex justify-between">
                     {!isEditable ? 'Cadastro do Seguro' : 'Informações do Seguro'}
                     <div className="space-x-2">
-                        <Button onClick={() => navigate('/vehicles')}
+                        <Button onClick={() => navigate('/insurances')}
                                 className="bg-amber-800 text-white cursor-pointer p-4 hover:bg-amber-700 rounded-full">
                             Voltar
                         </Button>

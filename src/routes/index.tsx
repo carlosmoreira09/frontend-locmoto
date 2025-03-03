@@ -17,6 +17,8 @@ import {TablePricePage} from "@/pages/table-price/TablePricePage.tsx";
 import Home from "../pages/home/Home.tsx";
 import {TrafficFinePage} from "@/pages/traffic-fines/TrafficFinePage.tsx";
 import {ReceiptsPage} from "@/pages/receipts/ReceiptsPage.tsx";
+import {InsuranceForm} from "@/pages/insurance/components/InsuranceForm.tsx";
+import {InsurancePage} from "@/pages/insurance/InsurancePage.tsx";
 
 
 export const router = createBrowserRouter([
@@ -141,7 +143,24 @@ export const router = createBrowserRouter([
                 path: 'receipt-details',
                 element: <AddReceiptsPage />
             }]
-    },
+    },{
+        path: 'insurances',
+        element: <AppLayout />,
+        children: [
+            {
+                index: true,
+                element: <InsurancePage />
+            },
+
+            {
+                path: 'new-insurance',
+                element: <InsuranceForm />
+            },
+            {
+                path: 'insurance-details',
+                element: <InsuranceForm />
+            }]
+    }
 
 ], {
     future: {

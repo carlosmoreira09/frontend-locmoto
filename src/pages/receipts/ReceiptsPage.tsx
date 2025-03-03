@@ -12,7 +12,7 @@ import {ICreateReceiptDto} from "@/types/dto/receipts.dto.ts";
 
 export const ReceiptsPage: React.FC = () => {
     const [receipts,setReceipts] = useState<ICreateReceiptDto[]>()
-    const router = useNavigate()
+    const navigate = useNavigate()
 
     const fetchReceipts = async () => {
         const result = await findaAllReceipts()
@@ -23,7 +23,7 @@ export const ReceiptsPage: React.FC = () => {
     }, []);
 
     const handleRowClick = (id_receipt: number | undefined) => {
-        router(`/receipts/receipt-details/`, { state: id_receipt})
+        navigate(`/receipts/receipt-details/`, { state: id_receipt})
     }
 
     return (
@@ -31,7 +31,7 @@ export const ReceiptsPage: React.FC = () => {
 
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl font-bold">Lista de Recibo</h2>
-                <Button onClick={() => router("/receipts/new-receipt")}>
+                <Button className="cursor-pointer" onClick={() => navigate("/receipts/new-receipt")}>
                     <UserPlus className="mr-2 h-4 w-4" /> Adicionar Recibo
                 </Button>
             </div>

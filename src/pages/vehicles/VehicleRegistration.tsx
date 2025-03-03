@@ -2,7 +2,7 @@ import React from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {PlusCircle} from "lucide-react";
 import VehicleForm from "@/pages/vehicles/components/VehicleForm.tsx";
-import {InsuranceForm} from "@/pages/insurance/InsuranceForm.tsx";
+import {InsuranceForm} from "@/pages/insurance/components/InsuranceForm.tsx";
 import {VehicleFinancialForm} from "@/pages/vehicle-financial/add-vehicle-financial.tsx";
 
 export const VehicleRegistration: React.FC = () => {
