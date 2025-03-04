@@ -17,3 +17,18 @@ export const findaAllInsurances = async (): Promise<GeneralResponse | undefined>
         }
     }
 };
+export const findOneInsurance = async (id_insurance: number | undefined): Promise<GeneralResponse | undefined> => {
+    try {
+
+        const response = await apiClient.get(`/insurance/${id_insurance}`, {
+            headers: {
+                'x-tenant-id': 1
+            }
+        });
+        return response.data;
+    } catch (error) {
+        if(isAxiosError(error)) {
+            return error.response?.data
+        }
+    }
+};

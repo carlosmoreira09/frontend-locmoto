@@ -13,7 +13,7 @@ interface GenericSelectProps<T extends { id: string | number }> {
 export default function GenericSelect<T extends { id: string | number }>({
                                                                              items,
                                                                              displayField,
-                                                                             placeholder = "Select an option",
+                                                                             placeholder = "Selecione uma opção",
                                                                              defaultValue,
                                                                              onChange,
                                                                              className,
@@ -29,7 +29,7 @@ export default function GenericSelect<T extends { id: string | number }>({
 
     return (
         <Select value={value} onValueChange={handleValueChange}>
-            <SelectTrigger className={className}>
+            <SelectTrigger className={className + ' rounded-full'}>
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>
             <SelectContent>

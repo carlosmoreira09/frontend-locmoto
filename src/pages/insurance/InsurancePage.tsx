@@ -40,7 +40,7 @@ export const InsurancePage: React.FC = () => {
                 <TableHeader>
                     <TableRow>
                         <TableHead className="w-[100px]">ID Seguro</TableHead>
-                        <TableHead>Empresa</TableHead>
+                        <TableHead>Empresa do Seguro</TableHead>
                         <TableHead>Número da Apolice</TableHead>
                         <TableHead>Situação</TableHead>
                         <TableHead>Data de Inicio</TableHead>
@@ -51,7 +51,7 @@ export const InsurancePage: React.FC = () => {
                     {insurances?.map((item) => (
                         <TableRow key={item.id} onClick={() => handleRowClick(item.id)} className="cursor-pointer hover:bg-muted">
                             <TableCell className="font-medium">{item.id}</TableCell>
-                            <TableCell>{item.companyName}</TableCell>
+                            <TableCell>{item.insuranceCompany}</TableCell>
                             <TableCell>{item.policyNumber}</TableCell>
                             <TableCell>{item.situation}</TableCell>
                             <TableCell>{format(item.startDate, "dd/MM/yyyy", { locale: ptBR })}</TableCell>

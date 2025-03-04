@@ -47,8 +47,8 @@ const ReceiptForm: React.FC<ReceiptProps> = ({receiptInfo}) => {
     return (
         <Card className="w-full mx-auto">
             <CardHeader>
-                <CardTitle className="flex justify-between">
-                    <span>Gerar Recibo</span>
+                <CardTitle className="flex justify-end">
+
                     <div className="space-x-2">
                         <Button onClick={() => navigate('/receipts')} className="bg-amber-800 hover:bg-amber-700 text-white p-4 rounded-full">
                             Voltar

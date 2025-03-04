@@ -43,7 +43,7 @@ export const InsuranceForm: React.FC<InsuranceProps> = ({insuranceInfo}) => {
                                 className="bg-amber-800 text-white cursor-pointer p-4 hover:bg-amber-700 rounded-full">
                             Voltar
                         </Button>
-                        <Button onClick={toggleEditClient} className="bg-amber-800 text-white cursor-pointer hover:bg-amber-700 p-4 rounded-full">
+                        <Button hidden={!location.pathname.includes('details')} onClick={toggleEditClient} className="bg-amber-800 text-white cursor-pointer hover:bg-amber-700 p-4 rounded-full">
                             {isEditable ? 'Editar Seguro' : 'Cancelar'}
                         </Button>
                     </div>
@@ -53,7 +53,7 @@ export const InsuranceForm: React.FC<InsuranceProps> = ({insuranceInfo}) => {
                 <CardContent className="grid grid-cols-1 md:grid-cols-5 gap-4">
                     <div className="space-y-2">
                         <Label htmlFor="companyName">Nome da Companhia</Label>
-                        <Input disabled={isEditable} placeholder={insurance?.companyName} id="companyName" {...register("companyName", { required: "Campo obrigatório" })} />
+                        <Input disabled={isEditable} placeholder={insurance?.insuranceCompany} id="companyName" {...register("companyName", { required: "Campo obrigatório" })} />
                         {errors.companyName && <span className="text-red-500 text-sm">{errors.companyName.message}</span>}
                     </div>
 

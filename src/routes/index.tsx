@@ -19,6 +19,7 @@ import {TrafficFinePage} from "@/pages/traffic-fines/TrafficFinePage.tsx";
 import {ReceiptsPage} from "@/pages/receipts/ReceiptsPage.tsx";
 import {InsuranceForm} from "@/pages/insurance/components/InsuranceForm.tsx";
 import {InsurancePage} from "@/pages/insurance/InsurancePage.tsx";
+import AddInsurancePage from "@/pages/insurance/AddInsurancePage.tsx";
 
 
 export const router = createBrowserRouter([
@@ -158,7 +159,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'insurance-details',
-                element: <InsuranceForm />
+                element: <AddInsurancePage />
             }]
     }
 
