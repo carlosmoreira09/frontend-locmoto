@@ -72,7 +72,7 @@ export const DriverForm: React.FC = () => {
                         <Button onClick={() => navigate('/drivers')} className="bg-amber-800 hover:bg-amber-700 text-white p-4 rounded-full">
                             Voltar
                         </Button>
-                        <Button onClick={toggleEditClient} className="bg-amber-800 hover:bg-amber-700 text-white p-4 rounded-full">
+                        <Button hidden={!location.pathname.includes('details')} onClick={toggleEditClient} className="bg-amber-800 text-white cursor-pointer hover:bg-amber-700 p-4 rounded-full">
                             {isEditable ? 'Editar Motorista' : 'Cancelar'}
                         </Button>
                     </div>

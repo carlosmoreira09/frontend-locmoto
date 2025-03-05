@@ -38,12 +38,12 @@ export const ClientForm: React.FC<ClientInfoCardProps> = ({clientInfo}) => {
                 <CardTitle className="flex justify-between">
                   <span>{!isEditable ? 'Cadastro do Cliente' : 'Informações do Cliente'}</span>
                     <div className="space-x-2">
-                    <Button onClick={() => navigate('/clients')} className="bg-amber-800 hover:bg-amber-700 text-white p-4 rounded-full">
-                        Voltar
-                    </Button>
-                    <Button  onClick={toggleEditClient} className="bg-amber-800 text-white p-4 rounded-full">
-                        {isEditable ? 'Editar Cliente' : 'Cancelar'}
-                    </Button>
+                        <Button onClick={() => navigate('/clients')} className="bg-amber-800 hover:bg-amber-700 text-white p-4 rounded-full">
+                            Voltar
+                        </Button>
+                        <Button hidden={!location.pathname.includes('details')} onClick={toggleEditClient} className="bg-amber-800 text-white cursor-pointer hover:bg-amber-700 p-4 rounded-full">
+                            {isEditable ? 'Editar Clients' : 'Cancelar'}
+                        </Button>
                     </div>
                 </CardTitle>
             </CardHeader>

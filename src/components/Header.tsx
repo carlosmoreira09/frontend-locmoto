@@ -1,11 +1,13 @@
-import React, { useState } from "react"
+import React, {useEffect, useState} from "react"
 import {ChevronDown, Menu, Search, X} from "lucide-react"
 import {Link} from "react-router-dom";
 import logoClintia  from '../assets/imagem-logo-grande.png'
 import {CardContent, CardHeader, CardTitle} from "@/components/ui/card.tsx";
-import {Input} from "@/components/ui/input.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {useNavigate} from "react-router";
+import {ICreateClient} from "@/types/dto/clients.dto.ts";
+import {findAllClientIDs} from "@/service/clients/clientService.ts";
+import GenericSelect from "@/components/GenericSelect.tsx";
 
 const menuItems = [
     {
@@ -120,12 +122,24 @@ export default function Header() {
     const [activeMenu, setActiveMenu] = useState<string | null>(null)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [searchTerm, setSearchTerm] = useState("")
+    const [clients, setClients] = useState<ICreateClient[]>([])
+
     const navigate = useNavigate()
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault()
         console.log("Searching for:", searchTerm)
+        setSearchTerm('')
     }
+    const fetchClients = async () => {
+        const result = await findAllClientIDs()
+        if(result?.data) {
+            setClients(result?.data || [])
+        }
+    }
+    useEffect(() => {
+        fetchClients().then()
+    }, []);
     const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
 
     return (
@@ -148,13 +162,14 @@ export default function Header() {
                         </CardHeader>
                         <CardContent>
                             <form onSubmit={handleSearch} className="flex gap-4">
-                                <Input
-                                    type="text"
-                                    placeholder="Procure pelo nome, cpf ou cnpj"
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="h-12 flex-grow"
-                                />
+                                {/*<Input*/}
+                                {/*    type="text"*/}
+                                {/*    placeholder="Procure pelo nome, cpf ou cnpj"*/}
+                                {/*    value={searchTerm}*/}
+                                {/*    onChange={(e) => setSearchTerm(e.target.value)}*/}
+                                {/*    className="h-12 flex-grow"*/}
+                                {/*/>*/}
+                                <GenericSelect items={clients} displayField="fullName" />
                                 <Button className="cursor-pointer text-white bg-amber-700 rounded-full hover:bg-amber-800"
                                         type="submit" size="lg">
                                     <Search className="mr-2 h-4 w-4"/> Procurar

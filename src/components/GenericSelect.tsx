@@ -32,7 +32,7 @@ export default function GenericSelect<T extends { id: string | number }>({
             <SelectTrigger className={className + ' rounded-full'}>
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-gray-100 rounded-xl">
                 {items.map((item) => (
                     <SelectItem key={item.id} value={item.id.toString()}>
                         {String(item[displayField])}

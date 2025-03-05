@@ -18,7 +18,7 @@ export const findaAllClients = async (): Promise<GeneralResponse | undefined> =>
     }
 };
 
-export const findOneClient = async (id_client: number | undefined): Promise<GeneralResponse | undefined> => {
+export const findOneClient = async (id_client: string | number | undefined): Promise<GeneralResponse | undefined> => {
     try {
 
         const response = await apiClient.get(`/clients/${id_client}`, {

@@ -9,6 +9,8 @@ import {ICreatePriceTableDto} from "@/types/dto/table-price.dto.ts";
 import {useNavigate} from "react-router";
 import {format} from "date-fns";
 import {ptBR} from "date-fns/locale";
+import GenericSelect from "@/components/GenericSelect.tsx";
+import {findAllVehicleIDs} from "@/service/vehicles/vehicleService.ts";
 
 interface VehiclePriceFormProps {
     priceInfo?: ICreatePriceTableDto
@@ -22,6 +24,8 @@ export const VehiclePriceForm: React.FC<VehiclePriceFormProps> = ({ priceInfo })
     const [error, setError] = React.useState<string | null>(null)
     const [price, setPrice] = useState<ICreatePriceTableDto | undefined>(undefined)
     const [isEditable, setIsEditable] = useState<boolean>(false)
+    const [vehicles, setVehicles ] = useState<{id: number, plateNumber: number, modelName: string}[]>([])
+
     useEffect(() => {
         if(priceInfo) {
             setPrice(priceInfo)
@@ -38,9 +42,18 @@ export const VehiclePriceForm: React.FC<VehiclePriceFormProps> = ({ priceInfo })
             setError('An error occurred while creating the price table. ' + err)
         }
     }
+    const fetchVehicles = async () => {
+        const result = await findAllVehicleIDs()
+        if(result?.data) {
+            setVehicles(result?.data[0] || [])
+        }
+    }
     const toggleEditClient = () => {
         setIsEditable(!isEditable)
     }
+    useEffect(() => {
+        fetchVehicles().then()
+    }, []);
 
     return (
         <Card className="w-full mx-auto">
@@ -51,7 +64,7 @@ export const VehiclePriceForm: React.FC<VehiclePriceFormProps> = ({ priceInfo })
                         <Button onClick={() => navigate('/table-price')} className="bg-amber-800 hover:bg-amber-700 text-white p-4 rounded-full">
                             Voltar
                         </Button>
-                        <Button  onClick={toggleEditClient} className="bg-amber-800 text-white p-4 rounded-full">
+                        <Button hidden={!location.pathname.includes('details')} onClick={toggleEditClient} className="bg-amber-800 text-white cursor-pointer hover:bg-amber-700 p-4 rounded-full">
                             {isEditable ? 'Editar Preço' : 'Cancelar'}
                         </Button>
                     </div>
@@ -60,26 +73,27 @@ export const VehiclePriceForm: React.FC<VehiclePriceFormProps> = ({ priceInfo })
             <form onSubmit={handleSubmit(onSubmit)}>
                 <CardContent className="grid grid-cols-1 md:grid-cols-5 gap-4">
                     <div className="space-y-2">
-                        <Label htmlFor="name">Escolha a moto</Label>
-                        <Input disabled={isEditable} placeholder={price?.name} id="name" {...register("name", { required: "Name is required" })} />
-                        {errors.name && <span className="text-red-500 text-sm">{errors.name.message}</span>}
+                        <Label htmlFor="vehicle">Selecione a Moto</Label>
+                        <GenericSelect items={vehicles} displayField="modelName"/>
+                        {errors.vehicle && <span className="text-red-500 text-sm">{errors.vehicle.message}</span>}
                     </div>
 
                     <div className="space-y-2">
                         <Label htmlFor="period">Escolha o periodo</Label>
-                        <Input disabled={isEditable} placeholder={price?.period} id="description" {...register("period")} />
+                        <Input disabled={isEditable} placeholder={price?.period}
+                               id="description" {...register("period")} />
                     </div>
 
                     <div className="space-y-2">
-                        <Label htmlFor="price">Price</Label>
+                        <Label htmlFor="price">Valor</Label>
                         <Input disabled={isEditable} placeholder={price?.price.toString()}
-                            id="price"
-                            type="number"
-                            step="0.01"
-                            {...register("price", {
-                                required: "Price is required",
-                                min: { value: 0, message: "Price must be positive" },
-                            })}
+                               id="price"
+                               type="number"
+                               step="0.01"
+                               {...register("price", {
+                                   required: "Price is required",
+                                   min: {value: 0, message: "Price must be positive"},
+                               })}
                         />
                         {errors.price && <span className="text-red-500 text-sm">{errors.price.message}</span>}
                     </div>
@@ -87,20 +101,25 @@ export const VehiclePriceForm: React.FC<VehiclePriceFormProps> = ({ priceInfo })
 
                     <div className="space-y-2">
                         <Label htmlFor="validFrom">Inicia em:</Label>
-                        <Input disabled={isEditable} placeholder={price?.validFrom ? format(price?.validFrom, "yyyy-MM-dd", { locale: ptBR}) : ''} id="validFrom" type="date" {...register("validFrom", { required: "Valid from date is required" })} />
+                        <Input disabled={isEditable}
+                               placeholder={price?.validFrom ? format(price?.validFrom, "yyyy-MM-dd", {locale: ptBR}) : ''}
+                               id="validFrom"
+                               type="date" {...register("validFrom", {required: "Valid from date is required"})} />
                         {errors.validFrom && <span className="text-red-500 text-sm">{errors.validFrom.message}</span>}
                     </div>
 
                     <div className="space-y-2">
                         <Label htmlFor="validTo">Termina em:</Label>
-                        <Input disabled={isEditable} placeholder={price?.validTo ? format(price?.validTo, "yyyy-MM-dd", { locale: ptBR}) : ''} id="validTo" type="date" {...register("validTo")} />
+                        <Input disabled={isEditable}
+                               placeholder={price?.validTo ? format(price?.validTo, "yyyy-MM-dd", {locale: ptBR}) : ''}
+                               id="validTo" type="date" {...register("validTo")} />
                     </div>
 
                     <div className="flex items-center space-x-2 col-span-full">
-                        <Checkbox disabled={isEditable} checked={price?.isActive} id="isActive" {...register("isActive")} />
+                        <Checkbox disabled={isEditable} checked={price?.isActive ? price.isActive : true}
+                                  id="isActive" {...register("isActive")} />
                         <Label htmlFor="isActive">Active</Label>
                     </div>
-
                     {error && <div className="text-red-500 text-sm col-span-full">{error}</div>}
                 </CardContent>
                 <CardFooter>

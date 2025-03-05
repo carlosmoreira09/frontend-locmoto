@@ -10,4 +10,5 @@ export interface ICreateReceiptDto {
     contractNumber: number;
     client: number;
     price: number;
+    driverName: number;
 }

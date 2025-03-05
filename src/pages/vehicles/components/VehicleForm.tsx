@@ -40,15 +40,15 @@ export const VehicleForm: React.FC<VehicleProps> = ({vehicleInfo}) => {
                                 className="bg-amber-800 text-white cursor-pointer p-4 hover:bg-amber-700 rounded-full">
                             Voltar
                         </Button>
-                        <Button onClick={toggleEditClient} className="bg-amber-800 text-white cursor-pointer hover:bg-amber-700 p-4 rounded-full">
-                            {isEditable ? 'Editar Motorista' : 'Cancelar'}
+                        <Button hidden={!location.pathname.includes('details')} onClick={toggleEditClient} className="bg-amber-800 text-white cursor-pointer hover:bg-amber-700 p-4 rounded-full">
+                            {isEditable ? 'Editar Moto' : 'Cancelar'}
                         </Button>
                     </div>
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div className="space-y-2">
                             <Label htmlFor="plateNumber">Placa</Label>
                             <Input disabled={isEditable} placeholder={vehicle?.plateNumber}

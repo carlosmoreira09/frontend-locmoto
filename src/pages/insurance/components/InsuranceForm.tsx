@@ -25,6 +25,7 @@ export const InsuranceForm: React.FC<InsuranceProps> = ({insuranceInfo}) => {
             setIsEditable(true)
         }
     }, [insuranceInfo]);
+
     const onSubmit = (data: ICreateInsurance) => {
         console.log(data)
         // Implement the logic to send the data to your backend

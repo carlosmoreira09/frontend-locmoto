@@ -1,7 +1,7 @@
 import {ICreateDriver, ICreateTrafficFine} from "@/types/dto/drivers.dto.ts";
 
 export interface ICreateClient {
-    id_client?: number;
+    id: string;
     personType: string;
     fullName: string;
     document: string;

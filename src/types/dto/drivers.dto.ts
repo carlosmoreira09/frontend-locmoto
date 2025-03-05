@@ -33,4 +33,6 @@ export interface ICreateTrafficFine {
     violationAddress: string
     city: string
     uf: string
+    client?: number
+    driver?: number
 }

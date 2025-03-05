@@ -33,3 +33,18 @@ export const findOneDriver = async (id_driver: number | undefined): Promise<Gene
         }
     }
 };
+export const findAllDriversIDs = async (): Promise<GeneralResponse | undefined> => {
+    try {
+
+        const response = await apiClient.get(`/drivers/ids`, {
+            headers: {
+                'x-tenant-id': 1
+            }
+        });
+        return response.data;
+    } catch (error) {
+        if(isAxiosError(error)) {
+            return error.response?.data
+        }
+    }
+};
