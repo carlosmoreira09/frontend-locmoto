@@ -34,7 +34,7 @@ export default function GenericSelect<T extends { id: string | number }>({
             </SelectTrigger>
             <SelectContent className="bg-gray-100 rounded-xl">
                 {items.map((item) => (
-                    <SelectItem key={item.id} value={item.id.toString()}>
+                    <SelectItem key={item.id} value={item.id?.toString()}>
                         {String(item[displayField])}
                     </SelectItem>
                 ))}
