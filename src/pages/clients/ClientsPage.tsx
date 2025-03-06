@@ -35,7 +35,7 @@ export const ClientsPage: React.FC = () => {
     }
 
     const handleRowClick = (client: ICreateClient) => {
-        router(`/clients/client-details/`, { state: client.id_client})
+        router(`/clients/client-details/`, { state: client.id})
     }
 
     return (
@@ -79,8 +79,8 @@ export const ClientsPage: React.FC = () => {
                 </TableHeader>
                 <TableBody>
                     {filteredData?.map((item) => (
-                        <TableRow key={item.id_client} onClick={() => handleRowClick(item)} className="cursor-pointer hover:bg-muted">
-                            <TableCell className="font-medium">{item.id_client}</TableCell>
+                        <TableRow key={item.id} onClick={() => handleRowClick(item)} className="cursor-pointer hover:bg-muted">
+                            <TableCell className="font-medium">{item.id}</TableCell>
                             <TableCell>{item.personType}</TableCell>
                             <TableCell>{item.fullName}</TableCell>
                             <TableCell>{item.email}</TableCell>
