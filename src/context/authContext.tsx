@@ -1,9 +1,9 @@
-import React, { useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {ITokenPayload} from "../types/auth.ts";
 import {ProfileRole} from "../types/ProfileRole.ts";
 import Cookies from "js-cookie";
 import {jwtDecode} from "jwt-decode";
-import { AuthContext } from "./context.tsx";
+import {AuthContext} from "./context.tsx";
 import {loginService} from "../service/auth/loginService.ts";
 
 export type Props = {

@@ -1,9 +1,9 @@
 import React from "react"
-import { useForm } from "react-hook-form"
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
+import {useForm} from "react-hook-form"
+import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@/components/ui/card"
+import {Label} from "@/components/ui/label"
+import {Input} from "@/components/ui/input"
+import {Button} from "@/components/ui/button"
 import {ICreateVehicleFinancial} from "@/types/dto/vehicle-financial.dto.ts";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
 import {paymentMethod} from "@/lib/genericOptions.ts";

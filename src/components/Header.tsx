@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 import {ChevronDown, Menu, Search, X} from "lucide-react"
 import {Link} from "react-router-dom";
-import logoClintia  from '../assets/imagem-logo-grande.png'
+import logoClintia from '../assets/imagem-logo-grande.png'
 import {CardContent, CardHeader, CardTitle} from "@/components/ui/card.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {useNavigate} from "react-router";

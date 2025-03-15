@@ -1,8 +1,7 @@
-import React, {useEffect} from "react"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { UserPlus } from "lucide-react"
+import React, {useEffect, useState} from "react"
+import {Button} from "@/components/ui/button"
+import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table"
+import {UserPlus} from "lucide-react"
 import {useNavigate} from "react-router";
 import {format} from "date-fns";
 import {ptBR} from "date-fns/locale";

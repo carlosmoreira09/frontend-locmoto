@@ -1,10 +1,9 @@
-import React, {useEffect} from "react"
-import { useState } from "react"
-import { useForm } from "react-hook-form"
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
+import React, {useEffect, useState} from "react"
+import {useForm} from "react-hook-form"
+import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@/components/ui/card"
+import {Label} from "@/components/ui/label"
+import {Input} from "@/components/ui/input"
+import {Button} from "@/components/ui/button"
 import {ICreateReceiptDto} from "@/types/dto/receipts.dto.ts";
 import {format} from "date-fns";
 import {ptBR} from "date-fns/locale";
@@ -12,6 +11,7 @@ import {useNavigate} from "react-router";
 import {findAllClientIDs, findOneClient} from "@/service/clients/clientService.ts";
 import GenericSelect from "@/components/GenericSelect.tsx";
 import {receiptStatusOptions} from "@/lib/genericOptions.ts";
+
 interface ReceiptProps {
     receiptInfo?: ICreateReceiptDto
 }

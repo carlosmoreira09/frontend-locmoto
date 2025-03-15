@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react"
-import { useForm } from "react-hook-form"
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card.tsx"
-import { Label } from "@/components/ui/label.tsx"
-import { Input } from "@/components/ui/input.tsx"
-import { Button } from "@/components/ui/button.tsx"
+import {useForm} from "react-hook-form"
+import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@/components/ui/card.tsx"
+import {Label} from "@/components/ui/label.tsx"
+import {Input} from "@/components/ui/input.tsx"
+import {Button} from "@/components/ui/button.tsx"
 import {ICreateInsurance} from "@/types/dto/insurance.dto.ts";
 import {useNavigate} from "react-router";
 

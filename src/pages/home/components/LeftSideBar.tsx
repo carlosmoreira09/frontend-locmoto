@@ -1,5 +1,5 @@
-import {FileText, AlertCircle, BikeIcon as Motorcycle} from 'lucide-react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {AlertCircle, BikeIcon as Motorcycle, FileText} from 'lucide-react'
+import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card"
 import {ActivityItem} from "@/pages/home/components/ActivityItem.tsx";
 
 interface PartnerInfo {

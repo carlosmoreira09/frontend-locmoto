@@ -38,3 +38,32 @@ export const paymentMethod = [
         label: "Cartão"
     }
 ]
+
+export const storeOptions = [
+    { id: 1, name: 'LocMoto Campos - Matrix', disable: false},
+    { id: 2, name: 'LocMoto Macaé - Filial',disable: false },
+
+];
+
+export const periodOptions = [
+    {
+        id: "semanal",
+        label: "Semanal"
+    },
+    {
+        id: "quinzena",
+        label: "Quinzena"
+    },
+    {
+        id: "mensal",
+        label: "Mensal"
+    },
+    {
+        id: "trimestral",
+        label: "Trimestral"
+    },
+    {
+        id: "anual",
+        label: "Anual"
+    }
+];

@@ -1,4 +1,4 @@
-import { TableIcon } from 'lucide-react'
+import {TableIcon} from 'lucide-react'
 import React from "react";
 
 interface EmptyTableStateProps {

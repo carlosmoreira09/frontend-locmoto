@@ -1,7 +1,7 @@
 import type React from "react"
-import { Button } from "@/components/ui/button"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { UserPlus } from "lucide-react"
+import {Button} from "@/components/ui/button"
+import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table"
+import {UserPlus} from "lucide-react"
 import {useNavigate} from "react-router";
 import {ICreateDriver} from "@/types/dto/drivers.dto.ts";
 

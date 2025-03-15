@@ -9,7 +9,7 @@ import {Spinner} from "@/components/ui/Spinner.tsx";
 import ClientForm from "@/pages/clients/components/ClientForm.tsx";
 import {AddContactInfo} from "@/pages/clients/components/add-contact-info.tsx";
 import {TrafficFines} from "@/pages/clients/components/traffic-fines.tsx";
-import { findOneClient} from "@/service/clients/clientService.ts";
+import {findOneClient} from "@/service/clients/clientService.ts";
 
 const ClientDetails:React.FC = () => {
     const [client,setClient] = useState<ICreateClient>({} as ICreateClient)

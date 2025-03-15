@@ -1,9 +1,9 @@
 import type React from "react"
-import { Button } from "@/components/ui/button"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { UserPlus } from "lucide-react"
+import {Button} from "@/components/ui/button"
+import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table"
+import {UserPlus} from "lucide-react"
 import {useNavigate} from "react-router";
-import { ICreateTrafficFine} from "@/types/dto/drivers.dto.ts";
+import {ICreateTrafficFine} from "@/types/dto/drivers.dto.ts";
 import NoDataTable from "@/components/NoDataTable.tsx";
 import {Card} from "@/components/ui/card.tsx";
 import {format} from "date-fns";

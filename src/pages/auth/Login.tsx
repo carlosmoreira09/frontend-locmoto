@@ -1,11 +1,11 @@
-import React, { useState} from 'react'
+import React, {useState} from 'react'
 import {AlertCircle, EyeIcon, EyeOff} from "lucide-react";
-import logoClintia  from '../../assets/imagem-logo-grande.png'
+import logoClintia from '../../assets/imagem-logo-grande.png'
 import {Alert, AlertDescription, AlertTitle} from "../../components/ui/alert.tsx";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "../../components/ui/select.tsx"
 import {Input} from "../../components/ui/input.tsx";
-import {storeOptions} from "@/utils/fixedOptions.ts";
-import { Button } from '../../components/ui/button.tsx';
+import {Button} from '../../components/ui/button.tsx';
+import {storeOptions} from "@/lib/genericOptions.ts";
 
 const Login:React.FC = () => {
 

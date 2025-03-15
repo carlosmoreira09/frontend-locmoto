@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import {Navigate, useLocation} from 'react-router-dom';
 import Cookies from "js-cookie";
 import {jwtDecode} from "jwt-decode";
 import {hasAccess} from "../../lib/controlAccessLevel.ts";

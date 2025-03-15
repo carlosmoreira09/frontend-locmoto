@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import {useState} from "react"
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select"
 
 interface GenericSelectProps<T extends { id: string | number }> {
     items: T[]
@@ -32,7 +32,7 @@ export default function GenericSelect<T extends { id: string | number }>({
             <SelectTrigger className={className + ' rounded-full'}>
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>
-            <SelectContent className="bg-gray-100 rounded-xl">
+            <SelectContent className="bg-gray-200 rounded-xl">
                 {items.map((item) => (
                     <SelectItem key={item.id} value={item.id?.toString()}>
                         {String(item[displayField])}

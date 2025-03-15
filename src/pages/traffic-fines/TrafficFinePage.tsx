@@ -1,10 +1,9 @@
-import React, {useEffect} from "react"
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card.tsx"
-import { Input } from "@/components/ui/input.tsx"
-import { Button } from "@/components/ui/button.tsx"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table.tsx"
-import { Search, UserPlus } from "lucide-react"
+import React, {useEffect, useState} from "react"
+import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card.tsx"
+import {Input} from "@/components/ui/input.tsx"
+import {Button} from "@/components/ui/button.tsx"
+import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table.tsx"
+import {Search, UserPlus} from "lucide-react"
 import {useNavigate} from "react-router";
 import {findaAllTrafficFines} from "@/service/traffic-fines/trafficFineService.ts";
 import {ICreateTrafficFine} from "@/types/dto/drivers.dto.ts";

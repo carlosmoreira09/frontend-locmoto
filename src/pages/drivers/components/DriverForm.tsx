@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react"
-import { useForm } from "react-hook-form"
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card.tsx"
-import { Label } from "@/components/ui/label.tsx"
-import { Input } from "@/components/ui/input.tsx"
-import { Textarea } from "@/components/ui/textarea.tsx"
-import { Checkbox } from "@/components/ui/checkbox.tsx"
-import { Button } from "@/components/ui/button.tsx"
+import {useForm} from "react-hook-form"
+import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@/components/ui/card.tsx"
+import {Label} from "@/components/ui/label.tsx"
+import {Input} from "@/components/ui/input.tsx"
+import {Textarea} from "@/components/ui/textarea.tsx"
+import {Checkbox} from "@/components/ui/checkbox.tsx"
+import {Button} from "@/components/ui/button.tsx"
 import {ICreateDriver} from "@/types/dto/drivers.dto.ts";
 import {useLocation} from "react-router-dom";
 import {Spinner} from "@/components/ui/Spinner.tsx";

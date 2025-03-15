@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from 'react'
-import { useForm } from 'react-hook-form'
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Button } from "@/components/ui/button"
+import {useForm} from 'react-hook-form'
+import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@/components/ui/card"
+import {Label} from "@/components/ui/label"
+import {Input} from "@/components/ui/input"
+import {Checkbox} from "@/components/ui/checkbox"
+import {Button} from "@/components/ui/button"
 import {ICreatePriceTableDto} from "@/types/dto/table-price.dto.ts";
 import {useNavigate} from "react-router";
-import {format} from "date-fns";
-import {ptBR} from "date-fns/locale";
 import GenericSelect from "@/components/GenericSelect.tsx";
-import {findAllVehicleIDs} from "@/service/vehicles/vehicleService.ts";
+import {findAllIDGroup} from "@/service/vehicles/vehicleService.ts";
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
+import {periodOptions, storeOptions} from "@/lib/genericOptions.ts";
 
 interface VehiclePriceFormProps {
     priceInfo?: ICreatePriceTableDto
@@ -24,7 +24,7 @@ export const VehiclePriceForm: React.FC<VehiclePriceFormProps> = ({ priceInfo })
     const [error, setError] = React.useState<string | null>(null)
     const [price, setPrice] = useState<ICreatePriceTableDto | undefined>(undefined)
     const [isEditable, setIsEditable] = useState<boolean>(false)
-    const [vehicles, setVehicles ] = useState<{id: number, plateNumber: number, modelName: string, group: string}[]>([])
+    const [vehicles, setVehicles ] = useState<{id: number, groupName: string}[]>([])
 
     useEffect(() => {
         if(priceInfo) {
@@ -43,9 +43,9 @@ export const VehiclePriceForm: React.FC<VehiclePriceFormProps> = ({ priceInfo })
         }
     }
     const fetchVehicles = async () => {
-        const result = await findAllVehicleIDs()
+        const result = await findAllIDGroup()
         if(result?.data) {
-            setVehicles(result?.data[0] || [])
+            setVehicles(result?.data || [])
         }
     }
     const toggleEditClient = () => {
@@ -73,15 +73,41 @@ export const VehiclePriceForm: React.FC<VehiclePriceFormProps> = ({ priceInfo })
             <form onSubmit={handleSubmit(onSubmit)}>
                 <CardContent className="grid grid-cols-1 md:grid-cols-5 gap-4">
                     <div className="space-y-2">
-                        <Label htmlFor="vehicle">Selecione o Grupo</Label>
-                        <GenericSelect items={vehicles} displayField="group"/>
-                        {errors.vehicle && <span className="text-red-500 text-sm">{errors.vehicle.message}</span>}
+                        <Label htmlFor="group">Selecione o Grupo</Label>
+                        <GenericSelect items={vehicles} displayField="groupName"/>
+                        {errors.group && <span className="text-red-500 text-sm">{errors.group.message}</span>}
                     </div>
-
                     <div className="space-y-2">
-                        <Label htmlFor="period">Escolha o periodo</Label>
-                        <Input disabled={isEditable} placeholder={price?.period}
-                               id="description" {...register("period")} />
+                        <Label htmlFor="vehicle">Selecione a loja</Label>
+
+                        <Select {...register('store')}>
+                            <SelectTrigger id="store">
+                                <SelectValue placeholder="Selecione a loja"/>
+                            </SelectTrigger>
+                            <SelectContent className="bg-gray-200 rounded-xl">
+                                {storeOptions.map((store) => (
+                                    <SelectItem key={store.id} value={store.id.toString()}>
+                                        {store.name}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="vehicle">Selecione a periodo</Label>
+
+                        <Select {...register('period')}>
+                            <SelectTrigger id="store">
+                                <SelectValue placeholder="Selecione a loja"/>
+                            </SelectTrigger>
+                            <SelectContent className="bg-gray-200 rounded-xl">
+                                {periodOptions.map((store) => (
+                                    <SelectItem key={store.id} value={store.id}>
+                                        {store.label}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
                     </div>
 
                     <div className="space-y-2">
@@ -99,7 +125,7 @@ export const VehiclePriceForm: React.FC<VehiclePriceFormProps> = ({ priceInfo })
                     </div>
 
                     <div className="flex items-center space-x-2 col-span-full">
-                        <Checkbox disabled={isEditable} checked={price?.isActive ? price.isActive : true}
+                        <Checkbox disabled={isEditable} checked={price?.isActive}
                                   id="isActive" {...register("isActive")} />
                         <Label htmlFor="isActive">Active</Label>
                     </div>

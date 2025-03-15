@@ -1,12 +1,9 @@
-import React, {useEffect} from "react"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { UserPlus } from "lucide-react"
+import React, {useEffect, useState} from "react"
+import {Button} from "@/components/ui/button"
+import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table"
+import {UserPlus} from "lucide-react"
 import {useNavigate} from "react-router";
 import {ICreatePriceTableDto} from "@/types/dto/table-price.dto.ts";
-import {format} from "date-fns";
-import {ptBR} from "date-fns/locale";
 import {findaAllPrices} from "@/service/table-price/tablePriceService.ts";
 
 
@@ -40,10 +37,10 @@ export const TablePricePage: React.FC = () => {
                 <TableHeader>
                     <TableRow>
                         <TableHead className="w-[100px]">ID</TableHead>
-                        <TableHead>Name</TableHead>
+                        <TableHead>Grupo</TableHead>
                         <TableHead>Periodo</TableHead>
-                        <TableHead>Valido de:</TableHead>
-                        <TableHead>Valido até</TableHead>
+                        <TableHead>Loja</TableHead>
+                        <TableHead>Valor</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -52,8 +49,6 @@ export const TablePricePage: React.FC = () => {
                             <TableCell className="font-medium">{item.name}</TableCell>
                             <TableCell>{item.price}</TableCell>
                             <TableCell>{item.period}</TableCell>
-                            <TableCell>{format(item.validFrom, "dd/MM/yyyy", { locale: ptBR })}</TableCell>
-                            <TableCell>{format(item.validTo, "dd/MM/yyyy", { locale: ptBR })}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

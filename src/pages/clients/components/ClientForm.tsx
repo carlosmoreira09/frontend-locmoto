@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { useForm } from 'react-hook-form';
+import {useForm} from 'react-hook-form';
 import {ICreateClient} from "@/types/dto/clients.dto.ts";
 import {Card, CardContent, CardFooter, CardHeader, CardTitle} from '@/components/ui/card';
 import {Input} from "@/components/ui/input.tsx";
@@ -7,11 +7,12 @@ import {Label} from "@/components/ui/label.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {Textarea} from "@/components/ui/textarea.tsx";
 import {Checkbox} from "@/components/ui/checkbox.tsx";
-import { format } from 'date-fns'
+import {format} from 'date-fns'
 import {ptBR} from "date-fns/locale";
 import {useNavigate} from "react-router";
 import GenericSelect from "@/components/GenericSelect.tsx";
 import {personType} from "@/lib/genericOptions.ts";
+
 interface ClientInfoCardProps {
     clientInfo?: ICreateClient
 }

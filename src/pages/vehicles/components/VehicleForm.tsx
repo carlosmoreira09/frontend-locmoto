@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { useForm } from 'react-hook-form';
+import {useForm} from 'react-hook-form';
 import {Card, CardContent, CardFooter, CardHeader, CardTitle} from '@/components/ui/card';
 import {Input} from "@/components/ui/input.tsx";
 import {Label} from "@/components/ui/label.tsx";
@@ -8,6 +8,7 @@ import {Textarea} from "@/components/ui/textarea.tsx";
 import {ICreateVehicle} from "@/types/dto/vehicles.dto.ts";
 import {Checkbox} from "@/components/ui/checkbox.tsx";
 import {useNavigate} from "react-router";
+
 interface VehicleProps {
     vehicleInfo?: ICreateVehicle
 }

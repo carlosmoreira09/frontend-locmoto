@@ -1,4 +1,4 @@
-import { cn } from "../../lib/utils.ts"
+import {cn} from "../../lib/utils.ts"
 import React from "react";
 
 interface SpinnerProps extends React.HTMLAttributes<SVGElement> {
