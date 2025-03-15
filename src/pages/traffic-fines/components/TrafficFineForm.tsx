@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/componen
 import { Label } from "@/components/ui/label.tsx"
 import { Input } from "@/components/ui/input.tsx"
 import { Textarea } from "@/components/ui/textarea.tsx"
-import { Checkbox } from "@/components/ui/checkbox.tsx"
 import { Button } from "@/components/ui/button.tsx"
 import {ICreateTrafficFine} from "@/types/dto/drivers.dto.ts";
 import {findOneTrafficFine} from "@/service/traffic-fines/trafficFineService.ts";
@@ -14,6 +13,10 @@ import {useNavigate} from "react-router";
 import {findAllVehicleIDs} from "@/service/vehicles/vehicleService.ts";
 import GenericSelect from "@/components/GenericSelect.tsx";
 import {findAllClientIDs, findOneClient} from "@/service/clients/clientService.ts";
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
+import {paymentMethod} from "@/lib/genericOptions.ts";
+import {format} from "date-fns";
+import {ptBR} from "date-fns/locale";
 
 
 export const TrafficFineForm: React.FC = () => {
@@ -106,13 +109,13 @@ export const TrafficFineForm: React.FC = () => {
             </CardHeader>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <CardContent className="grid grid-cols-1 md:grid-cols-5 gap-4">
-                    <div className="space-y-2">
-                        <Label htmlFor="fineNumber">Número da Multa</Label>
-                        <Input disabled={isEditable} placeholder={fine?.fineNumber}
-                               id="fineNumber" {...register("fineNumber", {required: "Campo obrigatório"})} />
-                        {errors.fineNumber && <span className="text-red-500 text-sm">{errors.fineNumber.message}</span>}
-                    </div>
 
+                    <div className="space-y-2">
+                        <Label htmlFor="autoNumber">Número do Contrato</Label>
+                        <Input disabled={isEditable} placeholder={fine?.autoNumber}
+                               id="autoNumber" {...register("autoNumber", {required: "Campo obrigatório"})} />
+                        {errors.autoNumber && <span className="text-red-500 text-sm">{errors.autoNumber.message}</span>}
+                    </div>
                     <div className="space-y-2">
                         <Label htmlFor="vehicle">Selecione a Moto</Label>
                         <GenericSelect items={vehicles} displayField="modelName"/>
@@ -121,80 +124,63 @@ export const TrafficFineForm: React.FC = () => {
                     {clients && (
                         <div className="space-y-2">
                             <Label htmlFor="fullName">Selecione o Cliente</Label>
-                            <GenericSelect onChange={setSelectedClient} items={clients} displayField="fullName" />
+                            <GenericSelect onChange={setSelectedClient} items={clients} displayField="fullName"/>
                             {errors.client && <span className="text-red-500 text-sm">{errors.client.message}</span>}
                         </div>
                     )}
                     {drivers && (
                         <div className="space-y-2">
                             <Label htmlFor="driverName">Selecione o Motorista</Label>
-                            <GenericSelect items={drivers} displayField="driverName" />
+                            <GenericSelect items={drivers} displayField="driverName"/>
                             {errors.driver && <span className="text-red-500 text-sm">{errors.driver.message}</span>}
                         </div>
                     )}
-
-                    <div className="space-y-2">
-                        <Label htmlFor="fineDate">Data da Multa</Label>
-                        <Input disabled={isEditable} placeholder={fine?.fineDate} id="fineDate"
-                               type="date" {...register("fineDate", {required: "Campo obrigatório"})} />
-                        {errors.fineDate && <span className="text-red-500 text-sm">{errors.fineDate.message}</span>}
-                    </div>
-
                     <div className="space-y-2">
                         <Label htmlFor="autoNumber">Número do Auto</Label>
                         <Input disabled={isEditable} placeholder={fine?.autoNumber}
                                id="autoNumber" {...register("autoNumber", {required: "Campo obrigatório"})} />
                         {errors.autoNumber && <span className="text-red-500 text-sm">{errors.autoNumber.message}</span>}
                     </div>
-
                     <div className="space-y-2">
-                        <Label htmlFor="origin">Origem</Label>
-                        <Input disabled={isEditable} placeholder={fine?.origin}
-                               id="origin" {...register("origin", {required: "Campo obrigatório"})} />
-                        {errors.origin && <span className="text-red-500 text-sm">{errors.origin.message}</span>}
+                        <Label htmlFor="fineDate">Data da Multa</Label>
+                        <Input disabled={isEditable}
+                               placeholder={fine?.fineDate ? format(fine?.fineDate, "yyyy-MM-dd", {locale: ptBR}) : ''}
+                               id="fineDate"
+                               type="date" {...register("fineDate", {required: "Campo obrigatório"})} />
+                        {errors.fineDate && <span className="text-red-500 text-sm">{errors.fineDate.message}</span>}
                     </div>
-
                     <div className="space-y-2">
-                        <Label htmlFor="severity">Gravidade</Label>
-                        <Input disabled={isEditable} placeholder={fine?.severity}
-                               id="severity" {...register("severity", {required: "Campo obrigatório"})} />
-                        {errors.severity && <span className="text-red-500 text-sm">{errors.severity.message}</span>}
+                        <Label htmlFor="validity">Vigência</Label>
+                        <Input disabled={isEditable}
+                               placeholder={fine?.validity ? format(fine?.validity, "yyyy-MM-dd", {locale: ptBR}) : ''}
+                               id="validity" {...register("autoNumber", {required: "Campo obrigatório"})} />
+                        {errors.validity && <span className="text-red-500 text-sm">{errors.validity.message}</span>}
                     </div>
-
-                    <div className="flex flex-row items-center mt-5 space-x-2">
-                        <Checkbox disabled={isEditable} checked={fine?.isIntern}
-                                  id="isIntern" {...register("isIntern")} />
-                        <Label htmlFor="isIntern">Interno</Label>
-                        <Checkbox disabled={isEditable} checked={fine?.isNotification}
-                                  id="isNotification" {...register("isNotification")} />
-                        <Label htmlFor="isNotification">Notificação</Label>
-                        <Checkbox disabled={isEditable} checked={fine?.isRepeatOffender}
-                                  id="isRepeatOffender" {...register("isRepeatOffender")} />
-                        <Label htmlFor="isRepeatOffender">Reincidente</Label>
-                    </div>
-
-                    <div className="space-y-2 col-span-full">
-                        <Label htmlFor="violationAddress">Endereço da Violação</Label>
-                        <Input className="h-14 rounded-2xl" disabled={isEditable} placeholder={fine?.violationAddress}
-                               id="violationAddress" {...register("violationAddress", {required: "Campo obrigatório"})} />
-                        {errors.violationAddress &&
-                            <span className="text-red-500 text-sm">{errors.violationAddress.message}</span>}
-                    </div>
-
                     <div className="space-y-2">
-                        <Label htmlFor="city">Cidade</Label>
-                        <Input disabled={isEditable} placeholder={fine?.city}
-                               id="city" {...register("city", {required: "Campo obrigatório"})} />
-                        {errors.city && <span className="text-red-500 text-sm">{errors.city.message}</span>}
+                        <Label htmlFor="autoNumber">Valor da Multa</Label>
+                        <Input disabled={isEditable} placeholder={fine?.price.toString()}
+                               id="price" {...register("autoNumber", {required: "Campo obrigatório"})} />
+                        {errors.price && <span className="text-red-500 text-sm">{errors.price.message}</span>}
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="paymentMethod">Forma de Pagamento</Label>
+                        <Select {...register("paymentMethod")}>
+                            <SelectTrigger className="w-max" id="paymentMethod">
+                                <SelectValue placeholder="Forma de Pagamento"/>
+                            </SelectTrigger>
+                            <SelectContent>
+                                {paymentMethod?.map((method) => (
+                                    <SelectItem key={method.id} value={method.id}>
+                                        {method.label}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                        {errors.paymentMethod &&
+                            <span className="text-red-500 text-sm">{errors.paymentMethod.message}</span>}
                     </div>
 
-                    <div className="space-y-2">
-                        <Label htmlFor="uf">UF</Label>
-                        <Input disabled={isEditable} placeholder={fine?.uf}
-                               id="uf" {...register("uf", {required: "Campo obrigatório", maxLength: 2})}
-                               maxLength={2}/>
-                        {errors.uf && <span className="text-red-500 text-sm">{errors.uf.message}</span>}
-                    </div>
+
                     <div className="space-y-2 col-span-full">
                         <Label htmlFor="violationObs">Observações da Violação</Label>
                         <Textarea disabled={isEditable} placeholder={fine?.violationObs}

@@ -10,6 +10,8 @@ import {Checkbox} from "@/components/ui/checkbox.tsx";
 import { format } from 'date-fns'
 import {ptBR} from "date-fns/locale";
 import {useNavigate} from "react-router";
+import GenericSelect from "@/components/GenericSelect.tsx";
+import {personType} from "@/lib/genericOptions.ts";
 interface ClientInfoCardProps {
     clientInfo?: ICreateClient
 }
@@ -32,6 +34,7 @@ export const ClientForm: React.FC<ClientInfoCardProps> = ({clientInfo}) => {
         setIsEditable(!isEditable)
     }
 
+
     return (
         <Card className="w-full mx-auto">
             <CardHeader>
@@ -49,12 +52,9 @@ export const ClientForm: React.FC<ClientInfoCardProps> = ({clientInfo}) => {
             </CardHeader>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <CardContent className="grid grid-cols-1 md:grid-cols-5 gap-4">
-                    <div className="space-y-2">
+                    <div className="w-3/4 space-y-2">
                         <Label htmlFor="personType">Tipo de Pessoa</Label>
-                        <Input disabled={isEditable} placeholder={client?.personType}
-                               id="personType"
-                               {...register('personType', {required: 'Campo obrigatório'})}
-                        />
+                        <GenericSelect defaultValue={client?.personType} items={personType} displayField="label" />
                         {errors.personType && <span className="text-red-500 text-sm">{errors.personType.message}</span>}
                     </div>
 
@@ -68,7 +68,7 @@ export const ClientForm: React.FC<ClientInfoCardProps> = ({clientInfo}) => {
                     </div>
 
                     <div className="space-y-2">
-                        <Label htmlFor="document">Documento</Label>
+                        <Label htmlFor="document">{ client?.personType == 'pf' ? 'CPF' : 'CNPJ'}</Label>
                         <Input disabled={isEditable} placeholder={client?.document}
                                id="document"
                                {...register('document')}

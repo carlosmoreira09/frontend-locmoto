@@ -54,113 +54,73 @@ export const InsuranceForm: React.FC<InsuranceProps> = ({insuranceInfo}) => {
                 <CardContent className="grid grid-cols-1 md:grid-cols-5 gap-4">
                     <div className="space-y-2">
                         <Label htmlFor="companyName">Nome da Companhia</Label>
-                        <Input disabled={isEditable} placeholder={insurance?.insuranceCompany} id="companyName" {...register("companyName", { required: "Campo obrigatório" })} />
-                        {errors.companyName && <span className="text-red-500 text-sm">{errors.companyName.message}</span>}
+                        <Input disabled={isEditable} placeholder={insurance?.insuranceCompany}
+                               id="companyName" {...register("companyName", {required: "Campo obrigatório"})} />
+                        {errors.companyName &&
+                            <span className="text-red-500 text-sm">{errors.companyName.message}</span>}
                     </div>
 
                     <div className="space-y-2">
                         <Label htmlFor="policyNumber">Número da Apólice</Label>
-                        <Input disabled={isEditable} placeholder={insurance?.policyNumber}  id="policyNumber" {...register("policyNumber", { required: "Campo obrigatório" })} />
-                        {errors.policyNumber && <span className="text-red-500 text-sm">{errors.policyNumber.message}</span>}
+                        <Input disabled={isEditable} placeholder={insurance?.policyNumber}
+                               id="policyNumber" {...register("policyNumber", {required: "Campo obrigatório"})} />
+                        {errors.policyNumber &&
+                            <span className="text-red-500 text-sm">{errors.policyNumber.message}</span>}
                     </div>
 
                     <div className="space-y-2">
                         <Label htmlFor="startDate">Data de Início</Label>
-                        <Input disabled={isEditable} placeholder={insurance?.startDate}  id="startDate" type="date" {...register("startDate", { required: "Campo obrigatório" })} />
+                        <Input disabled={isEditable} placeholder={insurance?.startDate} id="startDate"
+                               type="date" {...register("startDate", {required: "Campo obrigatório"})} />
                         {errors.startDate && <span className="text-red-500 text-sm">{errors.startDate.message}</span>}
                     </div>
 
                     <div className="space-y-2">
                         <Label htmlFor="endDate">Data de Término</Label>
-                        <Input disabled={isEditable} placeholder={insurance?.endDate}  id="endDate" type="date" {...register("endDate", { required: "Campo obrigatório" })} />
+                        <Input disabled={isEditable} placeholder={insurance?.endDate} id="endDate"
+                               type="date" {...register("endDate", {required: "Campo obrigatório"})} />
                         {errors.endDate && <span className="text-red-500 text-sm">{errors.endDate.message}</span>}
                     </div>
-
                     <div className="space-y-2">
-                        <Label htmlFor="situation">Situação</Label>
-                        <Input disabled={isEditable} placeholder={insurance?.situation}  id="situation" {...register("situation", { required: "Campo obrigatório" })} />
-                        {errors.situation && <span className="text-red-500 text-sm">{errors.situation.message}</span>}
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label htmlFor="awardType">Tipo de Prêmio</Label>
-                        <Input disabled={isEditable} placeholder={insurance?.awardType}  id="awardType" {...register("awardType", { required: "Campo obrigatório" })} />
-                        {errors.awardType && <span className="text-red-500 text-sm">{errors.awardType.message}</span>}
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label htmlFor="policytype">Tipo de Apólice</Label>
-                        <Input disabled={isEditable} placeholder={insurance?.policytype}  id="policytype" {...register("policytype", { required: "Campo obrigatório" })} />
-                        {errors.policytype && <span className="text-red-500 text-sm">{errors.policytype.message}</span>}
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label htmlFor="supplier">Fornecedor</Label>
-                        <Input disabled={isEditable} placeholder={insurance?.supplier}  id="supplier" {...register("supplier", { required: "Campo obrigatório" })} />
-                        {errors.supplier && <span className="text-red-500 text-sm">{errors.supplier.message}</span>}
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label htmlFor="supplierName">Nome do Fornecedor</Label>
-                        <Input disabled={isEditable} placeholder={insurance?.supplierName}  id="supplierName" {...register("supplierName", { required: "Campo obrigatório" })} />
-                        {errors.supplierName && <span className="text-red-500 text-sm">{errors.supplierName.message}</span>}
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label htmlFor="policyValueLiquid">Valor Líquido da Apólice</Label>
-                        <Input disabled={isEditable} value={insurance?.policyValueLiquid}
-                            id="policyValueLiquid"
-                            type="number"
-                            step="0.01"
-                            {...register("policyValueLiquid", {
-                                required: "Campo obrigatório",
-                                valueAsNumber: true,
-                            })}
-                        />
-                        {errors.policyValueLiquid && (
-                            <span className="text-red-500 text-sm">{errors.policyValueLiquid.message}</span>
-                        )}
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label htmlFor="iofValue">Valor IOF</Label>
-                        <Input disabled={isEditable} value={insurance?.iofValue}
-                            id="iofValue"
-                            type="number"
-                            step="0.01"
-                            {...register("iofValue", {
-                                required: "Campo obrigatório",
-                                valueAsNumber: true,
-                            })}
-                        />
-                        {errors.iofValue && <span className="text-red-500 text-sm">{errors.iofValue.message}</span>}
+                        <Label htmlFor="endDate">Forma de Pagamento</Label>
+                        <Input disabled={isEditable} placeholder={insurance?.endDate} id="endDate"
+                               type="date" {...register("endDate", {required: "Campo obrigatório"})} />
+                        {errors.endDate && <span className="text-red-500 text-sm">{errors.endDate.message}</span>}
                     </div>
 
                     <div className="space-y-2">
                         <Label htmlFor="awardTotalPolicy">Prêmio Total da Apólice</Label>
                         <Input disabled={isEditable} value={insurance?.awardTotalPolicy}
-                            id="awardTotalPolicy"
-                            type="number"
-                            step="0.01"
-                            {...register("awardTotalPolicy", {
-                                required: "Campo obrigatório",
-                                valueAsNumber: true,
-                            })}
+                               id="awardTotalPolicy"
+                               type="number"
+                               step="0.01"
+                               {...register("awardTotalPolicy", {
+                                   required: "Campo obrigatório",
+                                   valueAsNumber: true,
+                               })}
                         />
-                        {errors.awardTotalPolicy && <span className="text-red-500 text-sm">{errors.awardTotalPolicy.message}</span>}
+                        {errors.awardTotalPolicy &&
+                            <span className="text-red-500 text-sm">{errors.awardTotalPolicy.message}</span>}
                     </div>
 
                     <div className="space-y-2">
                         <Label htmlFor="vehicle">Veículo</Label>
                         <Input disabled={isEditable} value={insurance?.vehicle}
-                            id="vehicle"
-                            type="number"
-                            {...register("vehicle", {
-                                required: "Campo obrigatório",
-                                valueAsNumber: true,
-                            })}
+                               id="vehicle"
+                               type="number"
+                               {...register("vehicle", {
+                                   required: "Campo obrigatório",
+                                   valueAsNumber: true,
+                               })}
                         />
                         {errors.vehicle && <span className="text-red-500 text-sm">{errors.vehicle.message}</span>}
+                    </div>
+                    <div className="space-y-2 col-start-3 col-span-2 ">
+                        <Label htmlFor="observations">Anexar Arquivo</Label>
+                        <Input type="file" disabled={isEditable} value={insurance?.inputFile?.toString()}
+                               id="inputFile"
+                               {...register('inputFile')}
+                        />
                     </div>
                 </CardContent>
                 <CardFooter>

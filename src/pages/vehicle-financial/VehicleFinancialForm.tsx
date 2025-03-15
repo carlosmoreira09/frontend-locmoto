@@ -1,11 +1,12 @@
-import type React from "react"
+import React from "react"
 import { useForm } from "react-hook-form"
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
-import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
 import {ICreateVehicleFinancial} from "@/types/dto/vehicle-financial.dto.ts";
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
+import {paymentMethod} from "@/lib/genericOptions.ts";
 
 export const VehicleFinancialForm: React.FC = () => {
     const {
@@ -14,9 +15,9 @@ export const VehicleFinancialForm: React.FC = () => {
         formState: { errors },
     } = useForm<ICreateVehicleFinancial>()
 
+
     const onSubmit = (data: ICreateVehicleFinancial) => {
         console.log(data)
-        // Implementar lógica de envio aqui
     }
 
     return (
@@ -26,27 +27,25 @@ export const VehicleFinancialForm: React.FC = () => {
             </CardHeader>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <CardContent className="grid grid-cols-1 md:grid-cols-5 gap-4">
-                    <div className="space-y-2">
-                        <Label htmlFor="companyName">Nome da Empresa</Label>
-                        <Input id="companyName" {...register("companyName", { required: "Campo obrigatório" })} />
-                        {errors.companyName && <span className="text-red-500 text-sm">{errors.companyName.message}</span>}
-                    </div>
 
                     <div className="space-y-2">
                         <Label htmlFor="supplierName">Nome do Fornecedor</Label>
-                        <Input id="supplierName" {...register("supplierName", { required: "Campo obrigatório" })} />
-                        {errors.supplierName && <span className="text-red-500 text-sm">{errors.supplierName.message}</span>}
+                        <Input id="supplierName" {...register("supplierName", {required: "Campo obrigatório"})} />
+                        {errors.supplierName &&
+                            <span className="text-red-500 text-sm">{errors.supplierName.message}</span>}
                     </div>
 
                     <div className="space-y-2">
                         <Label htmlFor="purchaseDay">Data da Compra</Label>
-                        <Input id="purchaseDay" type="date" {...register("purchaseDay", { required: "Campo obrigatório" })} />
-                        {errors.purchaseDay && <span className="text-red-500 text-sm">{errors.purchaseDay.message}</span>}
+                        <Input id="purchaseDay"
+                               type="date" {...register("purchaseDay", {required: "Campo obrigatório"})} />
+                        {errors.purchaseDay &&
+                            <span className="text-red-500 text-sm">{errors.purchaseDay.message}</span>}
                     </div>
 
                     <div className="space-y-2">
                         <Label htmlFor="nfNumber">Número da NF</Label>
-                        <Input id="nfNumber" {...register("nfNumber", { required: "Campo obrigatório" })} />
+                        <Input id="nfNumber" {...register("nfNumber", {required: "Campo obrigatório"})} />
                         {errors.nfNumber && <span className="text-red-500 text-sm">{errors.nfNumber.message}</span>}
                     </div>
 
@@ -63,12 +62,22 @@ export const VehicleFinancialForm: React.FC = () => {
                         />
                         {errors.totalPrice && <span className="text-red-500 text-sm">{errors.totalPrice.message}</span>}
                     </div>
-
-                    <div className="flex items-center space-x-2">
-                        <Checkbox id="isFinancial" {...register("isFinancial")} />
-                        <Label htmlFor="isFinancial">Financiado</Label>
+                    <div className="space-y-2">
+                        <Label htmlFor="totalPrice">Forma de Pagamento</Label>
+                        <Select {...register("isFinancial")}>
+                            <SelectTrigger id="isFinancial">
+                                <SelectValue placeholder="Forma de Pagamento"/>
+                            </SelectTrigger>
+                            <SelectContent>
+                                {paymentMethod?.map((method) => (
+                                    <SelectItem key={method.id} value={method.id}>
+                                        {method.label}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                        {errors.isFinancial && <span className="text-red-500 text-sm">{errors.isFinancial.message}</span>}
                     </div>
-
                     <div className="space-y-2">
                         <Label htmlFor="quuantityMonth">Quantidade de Meses</Label>
                         <Input
@@ -79,7 +88,8 @@ export const VehicleFinancialForm: React.FC = () => {
                                 valueAsNumber: true,
                             })}
                         />
-                        {errors.quuantityMonth && <span className="text-red-500 text-sm">{errors.quuantityMonth.message}</span>}
+                        {errors.quuantityMonth &&
+                            <span className="text-red-500 text-sm">{errors.quuantityMonth.message}</span>}
                     </div>
 
                     <div className="space-y-2">
@@ -93,7 +103,8 @@ export const VehicleFinancialForm: React.FC = () => {
                                 valueAsNumber: true,
                             })}
                         />
-                        {errors.monthlyPrice && <span className="text-red-500 text-sm">{errors.monthlyPrice.message}</span>}
+                        {errors.monthlyPrice &&
+                            <span className="text-red-500 text-sm">{errors.monthlyPrice.message}</span>}
                     </div>
 
                     <div className="space-y-2">

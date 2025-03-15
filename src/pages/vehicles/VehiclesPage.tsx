@@ -73,10 +73,11 @@ export const VehiclesPage: React.FC = () => {
                 <TableHeader>
                     <TableRow>
                         <TableHead className="w-[100px]">ID</TableHead>
-                        <TableHead>Place</TableHead>
-                        <TableHead>Localização</TableHead>
+                        <TableHead>Placa</TableHead>
                         <TableHead>Modelo</TableHead>
-                        <TableHead>Ano </TableHead>
+                        <TableHead>Odometro</TableHead>
+                        <TableHead>Localização</TableHead>
+                        <TableHead>Status</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -84,9 +85,10 @@ export const VehiclesPage: React.FC = () => {
                         <TableRow key={item.id} onClick={() => handleRowClick(item)} className="cursor-pointer hover:bg-muted">
                             <TableCell className="font-medium">{item.id}</TableCell>
                             <TableCell>{item.plateNumber}</TableCell>
+                            <TableCell>{item.modelName}</TableCell>
+                            <TableCell>{item.odometer}</TableCell>
                             <TableCell>{item.location}</TableCell>
-                            <TableCell>{item.company}</TableCell>
-                            <TableCell>{item.yearModelBuild}</TableCell>
+                            <TableCell>{item.isActive ? "Disponível" : "Alugada" }</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

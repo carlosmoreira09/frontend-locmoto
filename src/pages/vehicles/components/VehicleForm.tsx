@@ -123,25 +123,9 @@ export const VehicleForm: React.FC<VehicleProps> = ({vehicleInfo}) => {
                         />
                         {errors.odometer && <span className="text-red-500 text-sm">{errors.odometer.message}</span>}
                     </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="location">Localização</Label>
-                        <Input disabled={isEditable} value={vehicle?.location}
-                               id="location"
-                               {...register('location', {required: 'Campo obrigatório'})}
-                        />
-                        {errors.location && <span className="text-red-500 text-sm">{errors.location.message}</span>}
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="tenant">Locatário</Label>
-                        <Input disabled={isEditable} value={vehicle?.odometer}
-                               id="tenant"
-                               type="number"
-                               {...register('tenant', {required: 'Campo obrigatório', valueAsNumber: true})}
-                        />
-                        {errors.tenant && <span className="text-red-500 text-sm">{errors.tenant.message}</span>}
-                    </div>
+
                     <div className="flex items-center mt-5 space-x-2">
-                        <Checkbox disabled={isEditable} value={vehicle?.isActive?.toString()}
+                        <Checkbox disabled={isEditable} checked={vehicle?.isActive ? vehicle?.isActive : true}
                                   id="isBlock"
                                   {...register('isActive')}
                         />

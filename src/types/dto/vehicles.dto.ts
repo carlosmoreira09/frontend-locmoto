@@ -10,7 +10,8 @@ export interface ICreateVehicle {
     yearModelBuild: string;
     fuelType: string;
     modelName: string;
-    isActive: string;
+    isActive: boolean;
+    isBlocked: boolean;
     vehicleObs: string;
     company: string;
     odometer: string;

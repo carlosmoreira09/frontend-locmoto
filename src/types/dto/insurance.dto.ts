@@ -14,4 +14,5 @@ export interface ICreateInsurance {
     iofValue: number
     awardTotalPolicy: number
     vehicle: number
+    inputFile?: File
 }

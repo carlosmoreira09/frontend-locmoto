@@ -20,19 +20,16 @@ export interface ICreateDriver {
 }
 export interface ICreateTrafficFine {
     id?: number;
-    fineNumber: string
     vehicle: ICreateVehicle
-    fineDate: string
-    autoNumber: string
-    origin: string
-    severity: string
-    violationObs: string
-    isIntern: boolean
-    isNotification: boolean
-    isRepeatOffender: boolean
-    violationAddress: string
-    city: string
-    uf: string
     client?: number
     driver?: number
+    fineDate: Date;
+    autoNumber: string;
+    paymentMethod: string;
+    contractNumber: number;
+    violationObs: string;
+    violationAddress: string;
+    validity: Date;
+    price: number;
+    clientId: number;
 }

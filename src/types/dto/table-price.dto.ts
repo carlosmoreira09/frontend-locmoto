@@ -5,6 +5,7 @@ export interface ICreatePriceTableDto {
     period?: string;
     price: number;
     currency: string;
+    group: string;
     validFrom: Date;
     validTo: Date;
     isActive: boolean;

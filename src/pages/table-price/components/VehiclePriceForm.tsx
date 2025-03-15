@@ -24,7 +24,7 @@ export const VehiclePriceForm: React.FC<VehiclePriceFormProps> = ({ priceInfo })
     const [error, setError] = React.useState<string | null>(null)
     const [price, setPrice] = useState<ICreatePriceTableDto | undefined>(undefined)
     const [isEditable, setIsEditable] = useState<boolean>(false)
-    const [vehicles, setVehicles ] = useState<{id: number, plateNumber: number, modelName: string}[]>([])
+    const [vehicles, setVehicles ] = useState<{id: number, plateNumber: number, modelName: string, group: string}[]>([])
 
     useEffect(() => {
         if(priceInfo) {
@@ -73,8 +73,8 @@ export const VehiclePriceForm: React.FC<VehiclePriceFormProps> = ({ priceInfo })
             <form onSubmit={handleSubmit(onSubmit)}>
                 <CardContent className="grid grid-cols-1 md:grid-cols-5 gap-4">
                     <div className="space-y-2">
-                        <Label htmlFor="vehicle">Selecione a Moto</Label>
-                        <GenericSelect items={vehicles} displayField="modelName"/>
+                        <Label htmlFor="vehicle">Selecione o Grupo</Label>
+                        <GenericSelect items={vehicles} displayField="group"/>
                         {errors.vehicle && <span className="text-red-500 text-sm">{errors.vehicle.message}</span>}
                     </div>
 
@@ -96,23 +96,6 @@ export const VehiclePriceForm: React.FC<VehiclePriceFormProps> = ({ priceInfo })
                                })}
                         />
                         {errors.price && <span className="text-red-500 text-sm">{errors.price.message}</span>}
-                    </div>
-
-
-                    <div className="space-y-2">
-                        <Label htmlFor="validFrom">Inicia em:</Label>
-                        <Input disabled={isEditable}
-                               placeholder={price?.validFrom ? format(price?.validFrom, "yyyy-MM-dd", {locale: ptBR}) : ''}
-                               id="validFrom"
-                               type="date" {...register("validFrom", {required: "Valid from date is required"})} />
-                        {errors.validFrom && <span className="text-red-500 text-sm">{errors.validFrom.message}</span>}
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label htmlFor="validTo">Termina em:</Label>
-                        <Input disabled={isEditable}
-                               placeholder={price?.validTo ? format(price?.validTo, "yyyy-MM-dd", {locale: ptBR}) : ''}
-                               id="validTo" type="date" {...register("validTo")} />
                     </div>
 
                     <div className="flex items-center space-x-2 col-span-full">

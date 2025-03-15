@@ -19,8 +19,8 @@ export const TrafficFinePage: React.FC = () => {
 
     const filteredData = fines?.filter(
         (item) =>
-            item.fineNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            item.origin.toLowerCase().includes(searchTerm.toLowerCase())
+            item.contractNumber.toString().includes(searchTerm.toLowerCase()) ||
+            item?.vehicle.plateNumber.toString().includes(searchTerm.toLowerCase())
     )
     const fetchTrafficFines = async () => {
         const result = await findaAllTrafficFines()
@@ -83,11 +83,11 @@ export const TrafficFinePage: React.FC = () => {
                     {filteredData?.map((item) => (
                         <TableRow key={item.id} onClick={() => handleRowClick(item.id)} className="cursor-pointer hover:bg-muted">
                             <TableCell className="font-medium">{item.id}</TableCell>
-                            <TableCell>{item.fineNumber}</TableCell>
+                            <TableCell>{item.contractNumber}</TableCell>
                             <TableCell>{format(item.fineDate, "dd/MM/yyyy", {locale: ptBR}) || "Sem resgistro"}</TableCell>
                             <TableCell>{item.autoNumber}</TableCell>
-                            <TableCell>{item.severity}</TableCell>
-                            <TableCell>{item.city}</TableCell>
+                            <TableCell>{item.vehicle.plateNumber}</TableCell>
+                            <TableCell>{item.vehicle.modelName}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

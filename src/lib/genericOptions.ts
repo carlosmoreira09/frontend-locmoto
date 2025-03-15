@@ -12,3 +12,29 @@ export const receiptStatusOptions = [
         label: "Cancelado"
     }
 ]
+
+export const personType = [
+    {
+        id: "pf",
+        label: "PF"
+    },
+    {
+        id: "pj",
+        label: "PJ"
+    }
+]
+
+export const paymentMethod = [
+    {
+        id: "avista",
+        label: "A vista"
+    },
+    {
+        id: "financiado",
+        label: "Financiado"
+    },
+    {
+        id: "cartao",
+        label: "Cartão"
+    }
+]
